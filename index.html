@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swaroop Rathi | Web Developer & Designer</title>
+
+      <!-- LINK TO YOUR EXTERNAL CSS FILE -->
+    <link rel="stylesheet" href="index.css">
+
+      <!-- Three.js (For Footer) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- GSAP (For Mask Reveal & Animations) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- Google Fonts (Combined) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome (For Footer Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS with Dark Mode Configuration -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#0a0a0a',
+                        darkcard: '#171717',
+                        primary: '#3b82f6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    screens: {
+                        'xs': '475px',
+                    }
+                }
+            }
+        }
+  </script>
+</head>
+<body class="bg-[#f3f4f6] dark:bg-darkbg dark:text-gray-100">
+
+    <!-- --- NAVBAR --- -->
+    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-5 md:px-12 transition-all duration-300 bg-transparent" id="main-nav">
+        <!-- Logo -->
+        <a href="index.html" class="text-2xl md:text-3xl font-bold font-['Space_Grotesk'] tracking-tighter text-black dark:text-white relative z-50">
+            SWAROOP
+        </a>
+
+        <!-- Desktop Links -->
+        <div class="hidden md:flex gap-8 items-center text-black dark:text-white">
+            <a href="index.html" class="nav-link-item">Home</a>
+            <div class="relative group h-full flex items-center">
+                <button class="nav-link-item flex items-center gap-1">
+                    About
+                    <svg class="w-3 h-3 mt-0.5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top -translate-y-2 group-hover:translate-y-0">
+                    <div class="bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-xl shadow-xl overflow-hidden min-w-[180px] p-2 flex flex-col gap-1">
+                        <a href="aboutme.html" class="block px-4 py-2 text-sm font-bold text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-white/5 hover:text-blue-600 dark:hover:text-yellow-300 rounded-lg transition-colors font-['Outfit'] text-center">About Me</a>
+                        <a href="education.html" class="block px-4 py-2 text-sm font-bold text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-white/5 hover:text-blue-600 dark:hover:text-yellow-300 rounded-lg transition-colors font-['Outfit'] text-center">Education</a>
+                        <a href="testimonials.html" class="block px-4 py-2 text-sm font-bold text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-white/5 hover:text-blue-600 dark:hover:text-yellow-300 rounded-lg transition-colors font-['Outfit'] text-center">Testimonials</a>
+                    </div>
+                </div>
+            </div>
+            <a href="projects.html" class="nav-link-item">Projects</a>
+            <a href="skills.html" class="nav-link-item">Skills</a>
+            <a href="services.html" class="nav-link-item">Services</a>
+            <a href="contact.html" class="nav-link-item">Contact</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="flex items-center gap-4 md:hidden relative z-50">
+            <button id="mobile-menu-btn" class="text-black dark:text-white text-2xl focus:outline-none">
+                <svg class="icon-svg w-8 h-8" viewBox="0 0 24 24">
+                    <path class="menu-open" d="M4 6h16M4 12h16M4 18h16"></path>
+                    <path class="menu-close hidden" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- --- MOBILE MENU OVERLAY --- -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-white/95 dark:bg-darkbg/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 md:hidden">
+        <a href="index.html" class="text-3xl font-bold font-['Space_Grotesk'] text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors" onclick="toggleMobileMenu()">Home</a>
+        <div class="flex flex-col items-center gap-4">
+             <span class="text-sm uppercase tracking-widest text-gray-500 font-bold">About</span>
+             <a href="aboutme.html" class="text-xl font-medium text-gray-800 dark:text-gray-200" onclick="toggleMobileMenu()">My Story</a>
+             <a href="education.html" class="text-xl font-medium text-gray-800 dark:text-gray-200" onclick="toggleMobileMenu()">Education</a>
+             <a href="testimonials.html" class="text-xl font-medium text-gray-800 dark:text-gray-200" onclick="toggleMobileMenu()">Testimonials</a>
+        </div>
+        <a href="projects.html" class="text-3xl font-bold font-['Space_Grotesk'] text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors" onclick="toggleMobileMenu()">Projects</a>
+        <a href="skills.html" class="text-3xl font-bold font-['Space_Grotesk'] text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors" onclick="toggleMobileMenu()">Skills</a>
+        <a href="services.html" class="text-3xl font-bold font-['Space_Grotesk'] text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors" onclick="toggleMobileMenu()">Services</a>
+        <a href="contact.html" class="text-3xl font-bold font-['Space_Grotesk'] text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors" onclick="toggleMobileMenu()">Contact</a>
+    </div>
+
+    <!-- --- HERO SECTION (MASK REVEAL) --- -->
+    <div class="mask-reveal-bg">
+        <!-- 1. VISIBLE CONTENT LAYER -->
+        <div class="mask-content relative z-10 pointer-events-none">
+            <div class="container mx-auto px-4 flex flex-col justify-center items-center h-full text-center">
+                <div class="pointer-events-auto">
+                    <p class="hero-subtitle mb-4 text-sm md:text-base text-blue-600 dark:text-blue-400">Hello, I am</p>
+                    <h1 class="hero-title text-5xl sm:text-6xl md:text-8xl lg:text-9xl mb-4 md:mb-6">
+                        SWAROOP<br>RATHI
+                    </h1>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl font-light mb-6 md:mb-8 tracking-wide">
+                        WEB DEVELOPER & DESIGNER
+                    </h2>
+                    <p class="desc max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed px-4">
+                        I craft high-performance digital experiences that merge creative design with technical precision
+                        Let's build the extraordinary.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. HIDDEN CONTENT LAYER (Revealed by Flashlight) -->
+        <div class="hidden-content-mask">
+            <div class="container mx-auto px-4 flex flex-col justify-center items-center h-full text-center">
+                <div>
+                    <p class="hero-subtitle mb-4 text-white text-sm md:text-base">The Creator</p>
+                    <h1 class="hero-title text-5xl sm:text-6xl md:text-8xl lg:text-9xl mb-4 md:mb-6 text-white">
+                        SWAROOP<br>RATHI
+                    </h1>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl font-light mb-6 md:mb-8 tracking-wide text-white">
+                        BUILDING THE FUTURE
+                    </h2>
+                    <p class="desc max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed font-medium text-white px-4">
+                       From websites to mobile apps, I focus on accessibility, scalability, and flawless execution to bring ideas to life.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- --- ABOUT SECTION --- -->
+    <section id="about" class="relative w-full max-w-[1600px] mx-auto p-4 md:p-8 lg:p-16 mt-8">
+        <div class="bg-gradient-to-br from-blue-100/80 via-white/50 to-pink-50/50 dark:from-darkcard/90 dark:via-blue-900/20 dark:to-darkcard/40 backdrop-blur-xl rounded-[1.5rem] md:rounded-[2rem] border border-white/60 dark:border-white/10 shadow-xl p-6 md:p-12 lg:p-16 overflow-hidden">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                
+                <!-- Left Content -->
+                <div class="reveal-blur">
+                    <span class="text-blue-600 dark:text-blue-400 mono-font text-xs md:text-sm font-bold tracking-widest block mb-4">ABOUT ME</span>
+                    <h2 class="text-3xl md:text-4xl font-bold display-font text-gray-900 dark:text-white mb-6">The intersection of Logic & Imagination.</h2>
+                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6 text-base md:text-lg font-light">
+                        I don't just write code; I solve problems. With a background in <span class="font-semibold text-gray-900 dark:text-white">Systems Engineering</span> and <span class="font-semibold text-gray-900 dark:text-white">Visual Design</span>, I create products that look beautiful and perform flawlessly at scale.
+                    </p>
+                    
+                    <!-- Buttons (Restored "About Me" Button) -->
+                    <div class="flex flex-col sm:flex-row flex-wrap gap-4 mt-6 mb-8">
+                        <a href="projects.html" class="group relative px-6 md:px-8 py-3 rounded-full border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-bold tracking-wide overflow-hidden transition-all duration-300 hover:border-blue-600 hover:shadow-lg hover:shadow-blue-500/30 hover:-translate-y-1 text-center">
+                            <span class="absolute inset-0 w-full h-full bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out"></span>
+                            <span class="relative z-10 flex items-center justify-center gap-2 group-hover:text-white transition-colors duration-300">
+                                View Project 
+                                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </span>
+                        </a>
+                        <a href="aboutme.html" class="group relative px-6 md:px-8 py-3 rounded-full border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-bold tracking-wide overflow-hidden transition-all duration-300 hover:border-blue-600 hover:shadow-lg hover:shadow-blue-500/30 hover:-translate-y-1 text-center">
+                            <span class="absolute inset-0 w-full h-full bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out"></span>
+                            <span class="relative z-10 flex items-center justify-center gap-2 group-hover:text-white transition-colors duration-300">
+                                About Me
+                                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </span>
+                        </a>
+                        <a href="contact.html" class="group relative px-6 md:px-8 py-3 rounded-full border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-bold tracking-wide overflow-hidden transition-all duration-300 hover:border-blue-600 hover:shadow-lg hover:shadow-blue-500/30 hover:-translate-y-1 text-center">
+                            <span class="absolute inset-0 w-full h-full bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out"></span>
+                            <span class="relative z-10 flex items-center justify-center gap-2 group-hover:text-white transition-colors duration-300">
+                                Contact Me
+                                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="flex gap-8 mt-8">
+                        <div>
+                            <h3 class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 display-font count-up" data-target="5">0</h3>
+                            <p class="text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400 mt-1">Years Exp.</p>
+                        </div>
+                        <div class="w-px bg-gray-300 dark:bg-gray-700"></div>
+                        <div>
+                            <h3 class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 display-font count-up" data-target="50">0</h3>
+                            <p class="text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400 mt-1">Projects</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Grid (Skills) -->
+                <div id="skills" class="grid grid-cols-1 sm:grid-cols-2 gap-4 reveal-blur" style="transition-delay: 200ms;">
+                    <!-- Frontend -->
+                    <div class="p-6 bg-white dark:bg-darkcard rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 hover:border-blue-300 dark:hover:border-blue-500 hover:shadow-md transition-all group cursor-default">
+                        <div class="w-10 h-10 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z"></path></svg>
+                        </div>
+                        <h4 class="font-bold text-gray-900 dark:text-white">Frontend</h4>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">React, Next.js, Three.js, Tailwind</p>
+                    </div>
+                    <!-- Backend -->
+                    <div class="p-6 bg-white dark:bg-darkcard rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-md transition-all group cursor-default">
+                        <div class="w-10 h-10 rounded-full bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center mb-4 text-indigo-600 dark:text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                            <svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                        </div>
+                        <h4 class="font-bold text-gray-900 dark:text-white">Backend</h4>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Node, PostgreSQL, Redis, AWS</p>
+                    </div>
+                    <!-- Design -->
+                    <div class="p-6 bg-white dark:bg-darkcard rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 hover:border-purple-300 dark:hover:border-purple-500 hover:shadow-md transition-all group cursor-default">
+                        <div class="w-10 h-10 rounded-full bg-purple-50 dark:bg-purple-900/30 flex items-center justify-center mb-4 text-purple-600 dark:text-purple-400 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+                        </div>
+                        <h4 class="font-bold text-gray-900 dark:text-white">Design</h4>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Figma, Spline, Adobe CC</p>
+                    </div>
+                    <!-- Performance -->
+                    <div class="p-6 bg-white dark:bg-darkcard rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 hover:border-orange-300 dark:hover:border-orange-500 hover:shadow-md transition-all group cursor-default">
+                        <div class="w-10 h-10 rounded-full bg-orange-50 dark:bg-orange-900/30 flex items-center justify-center mb-4 text-orange-600 dark:text-orange-400 group-hover:bg-orange-600 group-hover:text-white transition-colors">
+                            <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                        </div>
+                        <h4 class="font-bold text-gray-900 dark:text-white">Performance</h4>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Vitals, SEO, Accessibility</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- --- FOOTER SECTION (Updated to Match index.html) --- -->
+    <div class="footer-wrapper">
+        <div class="glow-overlay"></div>
+        <div class="glow-overlay1"></div>
+        <div class="top-section">
+            <div class="visual-area"><div id="footer-canvas-container" title="Interactive Data Field"></div></div>
+            <div class="content-area">
+                <h1 class="main-title text-gray-900 dark:text-white">Let's build your next <br><span class="changing-word" id="word-rotator">experiential</span> <br>project together.</h1>
+                <div class="links-grid">
+                    <div>
+                        <span class="col-header">Primary</span>
+                        <div class="link-list">
+                            <a href="index.html" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="char-anim effect-float-up">Home</a>
+                            <a href="aboutme.html" class="char-anim effect-float-up">About Me</a>
+                            <a href="projects.html" class="char-anim effect-float-up">Projects</a>
+                            <a href="contact.html" class="char-anim effect-float-up">Contact</a>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="col-header">Go Deeper</span>
+                        <div class="link-list">
+                            <a href="education.html" class="char-anim effect-float-up">Education</a>
+                            <a href="testimonials.html" class="char-anim effect-float-up">Testimonials</a>
+                            <a href="skills.html" class="char-anim effect-float-up">Skills</a>
+                            <a href="services.html" class="char-anim effect-float-up">Services</a>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="col-header">Socials</span>
+                        <div class="link-list">
+                            <!-- GitHub: Initial White (Light) / Black (Dark). Hover Black (Light) / White (Dark) -->
+                            <a href="#" class="flex items-center gap-3 group">
+                                <i class="fab fa-github text-xl transition-colors duration-300 text-black dark:text-white group-hover:opacity-80"></i>
+                                <span class="char-anim effect-float-up transition-colors duration-300">GitHub</span>
+                            </a>
+                            <!-- LinkedIn -->
+                            <a href="#" class="flex items-center gap-3 group">
+                                <i class="fab fa-linkedin text-xl transition-colors duration-300 group-hover:text-[#0077b5] dark:group-hover:text-sky-300"></i>
+                                <span class="char-anim effect-float-up transition-colors duration-300">LinkedIn</span>
+                            </a>
+                            <!-- Instagram -->
+                            <a href="#" class="flex items-center gap-3 group">
+                                <i class="fab fa-instagram text-xl transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-tr group-hover:from-yellow-400 group-hover:via-pink-500 group-hover:to-purple-600"></i>
+                                <span class="char-anim effect-float-up transition-colors duration-300">Instagram</span>
+                            </a>
+                            <!-- X / Twitter COMBINED -->
+                            <a href="#" class="!flex items-center gap-3 group">
+                                <!-- X Logo -->
+                                <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current transition-colors duration-300 text-black dark:text-white group-hover:opacity-80">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                                </svg>
+                                <span class="char-anim effect-float-up transition-colors duration-300">X / Twitter</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="col-header">Contact</span>
+                        <div class="link-list">
+                            <a href="mailto:swaroopr2345@gmail.com" class="group email-link transition-colors duration-300 hover:text-blue-600 dark:hover:text-yellow-400 whitespace-nowrap">
+                                <span class="char-anim effect-float-up">swaroopr2345@gmail.com</span>
+                            </a>
+                            <a href="contact.html" class="char-anim effect-float-up">Contact Form</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-bar">
+            <div>&copy; 2025 SWAROOP RATHI</div>
+             <div id="live-clock">IND --:--:--</div>
+            <div style="font-style: italic;">WE COULD JUST EAT YOU UP ///////</div>
+        </div>
+        <!-- UPDATED: CHANGED TO ANCHOR TAG AND REMOVED POINTER-EVENTS: NONE -->
+        <a href="index.html" class="massive-brand">Swaroop</a>
+    </div>
+
+    <!-- --- FLOATING BUTTONS (Theme & Scroll Top) --- -->
+    <div class="fixed bottom-8 right-8 z-[100] flex flex-col gap-4">
+        
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle" class="theme-toggle fixed-btn w-12 h-12 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-lg flex items-center justify-center">
+            <!-- Moon SVG -->
+            <svg class="icon-svg dark:hidden" viewBox="0 0 24 24">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <!-- Sun SVG -->
+            <svg class="icon-svg hidden dark:block" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+        </button>
+
+        <!-- Scroll Top Button -->
+        <button id="scroll-top-btn" class="fixed-btn w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-colors duration-300 border border-gray-200 dark:border-gray-700 bg-white text-black dark:bg-black dark:text-white hover:bg-blue-600 hover:text-white hover:border-blue-600 dark:hover:bg-blue-600 dark:hover:text-white dark:hover:border-blue-600">
+            <svg class="icon-svg" viewBox="0 0 24 24">
+                <line x1="12" y1="19" x2="12" y2="5"></line>
+                <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        // ==========================================
+        // 0. NAVBAR & THEME LOGIC
+        // ==========================================
+        const nav = document.getElementById('main-nav');
+        const scrollBtn = document.getElementById('scroll-top-btn');
+        const themeBtn = document.getElementById('theme-toggle');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const htmlElement = document.documentElement;
+
+        // Check LocalStorage on Load
+        if(localStorage.getItem('theme') === 'dark') {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
+        }
+
+        // Theme Toggle with Persistence
+        if(themeBtn) {
+            themeBtn.addEventListener('click', () => {
+                htmlElement.classList.toggle('dark');
+                if(htmlElement.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('open');
+            const paths = mobileMenuBtn.querySelectorAll('path');
+            paths.forEach(p => p.classList.toggle('hidden'));
+            
+            // Toggle Body Overflow
+            if(mobileMenu.classList.contains('open')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+        
+        if(mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        }
+
+        // Scroll Logic for Nav & Back-to-Top
+        window.addEventListener('scroll', () => {
+            // Navbar Transition: Transparent -> Glass
+            if (window.scrollY > 50) {
+                nav.classList.remove('bg-transparent');
+                nav.classList.add('bg-white/30', 'backdrop-blur-md', 'shadow-sm', 'dark:bg-black/30');
+            } else {
+                nav.classList.add('bg-transparent');
+                nav.classList.remove('bg-white/30', 'backdrop-blur-md', 'shadow-sm', 'dark:bg-black/30');
+            }
+
+            // Scroll Top Button Visibility
+            if (window.scrollY > 300) {
+                scrollBtn.classList.add('show');
+            } else {
+                scrollBtn.classList.remove('show');
+            }
+        });
+
+        // Scroll Top Action
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ==========================================
+        // 1. MASK REVEAL LOGIC
+        // ==========================================
+        const hiddenMask = document.querySelector(".hidden-content-mask");
+        const maskSection = document.querySelector(".mask-reveal-bg");
+        // Target the specific text container for hover triggers
+        const textTrigger = document.querySelector(".mask-content .pointer-events-auto");
+
+        if(hiddenMask && maskSection && textTrigger) {
+            // Initial state: 0px
+            gsap.set(hiddenMask, { autoAlpha: 1, "--size": "0px" });
+
+            /* TIMELINES */
+            // Timeline handles expansion from 5px (pilot light) to 250px (flashlight)
+            const tlReveal = gsap.timeline({ paused: true });
+            
+            // We'll manage state manually for better control
+            let isHoveringText = false;
+            let isHoveringSection = false;
+
+            /* MOUSE + TOUCH TRACKING */
+            function updatePosition(x, y) {
+                const rect = maskSection.getBoundingClientRect();
+                const relX = x - rect.left;
+                const relY = y - rect.top;
+
+                gsap.to(hiddenMask, {
+                    "--x": relX + "px",
+                    "--y": relY + "px",
+                    duration: 0.1,
+                    ease: "power1.out"
+                });
+            }
+
+            // Track mouse relative to the section
+            maskSection.addEventListener("mousemove", (e) => {
+                updatePosition(e.clientX, e.clientY);
+            });
+            maskSection.addEventListener("touchmove", (e) => {
+                const t = e.touches[0];
+                updatePosition(t.clientX, t.clientY);
+            }, { passive: true });
+
+            /* SECTION HOVER (The 5px Dot) */
+            maskSection.addEventListener("mouseenter", () => {
+                isHoveringSection = true;
+                if (!isHoveringText) {
+                    gsap.to(hiddenMask, { "--size": "5px", duration: 0.3, ease: "power2.out" });
+                }
+            });
+
+            maskSection.addEventListener("mouseleave", () => {
+                isHoveringSection = false;
+                isHoveringText = false; // Safety
+                gsap.to(hiddenMask, { "--size": "0px", duration: 0.3, ease: "power2.in" });
+            });
+
+            /* TEXT HOVER (The 250px Flashlight) */
+            textTrigger.addEventListener("mouseenter", () => {
+                isHoveringText = true;
+                gsap.to(hiddenMask, { "--size": "250px", duration: 0.4, ease: "power2.out" });
+            });
+            
+            textTrigger.addEventListener("mouseleave", () => {
+                isHoveringText = false;
+                // Go back to 5px if still in section, else 0px
+                if(isHoveringSection) {
+                    gsap.to(hiddenMask, { "--size": "5px", duration: 0.4, ease: "power2.out" });
+                } else {
+                    gsap.to(hiddenMask, { "--size": "0px", duration: 0.4, ease: "power2.out" });
+                }
+            });
+            
+            /* Touch support */
+            document.addEventListener("touchstart", (e) => {
+                if (e.target.closest(".mask-content .pointer-events-auto")) {
+                    gsap.to(hiddenMask, { "--size": "250px", duration: 0.4 });
+                } else if (e.target.closest(".mask-reveal-bg")) {
+                    gsap.to(hiddenMask, { "--size": "5px", duration: 0.4 });
+                } else {
+                    gsap.to(hiddenMask, { "--size": "0px", duration: 0.4 });
+                }
+            });
+        }
+
+
+        // ==========================================
+        // 2. ABOUT SECTION LOGIC
+        // ==========================================
+
+        /* Counter Animation Function */
+        function animateCounter(el) {
+            const target = parseInt(el.getAttribute('data-target'));
+            const duration = 2000;
+            const step = 20;
+            const increment = target / (duration / step);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    el.innerText = target + "+";
+                    clearInterval(timer);
+                } else {
+                    el.innerText = Math.ceil(current) + "+";
+                }
+            }, step);
+        }
+
+        /* Intersection Observer for Reveal & Counters */
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const target = entry.target;
+                if (entry.isIntersecting) {
+                    target.classList.add('is-visible');
+                    
+                    const counters = target.querySelectorAll('.count-up');
+                    counters.forEach(counter => {
+                        animateCounter(counter);
+                        counter.classList.remove('count-up');
+                    });
+
+                    if (target.classList.contains('count-up')) {
+                        animateCounter(target);
+                        target.classList.remove('count-up'); 
+                    }
+                }
+            });
+        }, { 
+            threshold: 0.2, 
+            rootMargin: "0px 0px -50px 0px" 
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealElements = document.querySelectorAll('.reveal-blur');
+            revealElements.forEach(el => observer.observe(el));
+        });
+
+
+        // ==========================================
+        // 3. FOOTER LOGIC (THREE.JS & ANIMATIONS)
+        // ==========================================
+
+        function initFooter3D() {
+            const footerContainer = document.getElementById('footer-canvas-container'); if(!footerContainer) return;
+            const fScene = new THREE.Scene(); const fCamera = new THREE.PerspectiveCamera(45, footerContainer.clientWidth / footerContainer.clientHeight, 0.1, 1000); fCamera.position.set(0, 0, 14);
+            const fRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); fRenderer.setSize(footerContainer.clientWidth, footerContainer.clientHeight); fRenderer.setPixelRatio(window.devicePixelRatio); footerContainer.appendChild(fRenderer.domElement);
+            // Updated colors to Deep Blue and Pink as requested
+            const matBlue = new THREE.MeshBasicMaterial({ color: 0x0700c5, transparent: true, opacity: 0.8, blending: THREE.NormalBlending });
+            const matPink = new THREE.MeshBasicMaterial({ color: 0xFF24d0, transparent: true, opacity: 0.8, blending: THREE.NormalBlending });
+            const fieldGroup = new THREE.Group(); fScene.add(fieldGroup);
+            for(let i=0; i<30; i++){ const height = 1.5 + Math.random() * 4; const geo = new THREE.BoxGeometry(0.08, height, 0.08); const m = new THREE.Mesh(geo, Math.random() > 0.5 ? matBlue : matPink); m.position.set((Math.random() - 0.5) * 8, (Math.random() - 0.5) * 8, (Math.random() - 0.5) * 6); m.userData = { phase: Math.random() * Math.PI * 2 }; fieldGroup.add(m); }
+            fieldGroup.rotation.z = -0.4; fieldGroup.rotation.y = 0.2; fieldGroup.rotation.x = 0.1; let fMouseX = 0; let fMouseY = 0;
+            footerContainer.addEventListener('mousemove', (e) => { const rect = footerContainer.getBoundingClientRect(); fMouseX = (e.clientX - rect.left - rect.width/2) * 0.002; fMouseY = (e.clientY - rect.top - rect.height/2) * 0.002; });
+            footerContainer.addEventListener('mouseleave', () => { fMouseX = 0; fMouseY = 0; });
+            function animateFooter() { requestAnimationFrame(animateFooter); const time = Date.now() * 0.001; fieldGroup.children.forEach(bar => { bar.position.y += Math.sin(time + bar.userData.phase) * 0.005; }); fieldGroup.rotation.x += (fMouseY - (fieldGroup.rotation.x - 0.1)) * 0.05; fieldGroup.rotation.y += (fMouseX - (fieldGroup.rotation.y - 0.2)) * 0.05; fRenderer.render(fScene, fCamera); } animateFooter();
+            window.addEventListener('resize', () => { fCamera.aspect = footerContainer.clientWidth / footerContainer.clientHeight; fCamera.updateProjectionMatrix(); fRenderer.setSize(footerContainer.clientWidth, footerContainer.clientHeight); });
+        }
+        initFooter3D();
+
+        // --- WORD ROTATOR LOGIC ---
+        const words = ["experiential", "branding", "digital", "power", "future"];
+        let currentIndex = 0;
+        const wordSpan = document.getElementById("word-rotator");
+
+        function splitTextRotator(target) {
+            if(!target) return;
+            const text = target.innerText;
+            target.innerHTML = '';
+            text.split('').forEach((char, i) => {
+                const span = document.createElement('span');
+                span.className = 'char'; 
+                span.innerText = char === ' ' ? '\u00A0' : char;
+                span.style.setProperty('--i', i);
+                target.appendChild(span);
+            });
+        }
+
+        function rotateWords() {
+            if(!wordSpan) return;
+            currentIndex = (currentIndex + 1) % words.length;
+            wordSpan.innerText = words[currentIndex];
+            splitTextRotator(wordSpan);
+        }
+
+        if(wordSpan) {
+            splitTextRotator(wordSpan);
+            setInterval(rotateWords, 3000);
+        }
+
+        // --- LINK HOVER LOGIC ---
+        function initLinkAnimation() {
+            document.querySelectorAll('.char-anim').forEach(element => {
+                const text = element.innerText;
+                element.innerHTML = text.split('').map((char, index) => {
+                    const className = char === ' ' ? 'space' : '';
+                    return `<span class="${className}" style="--i: ${index}">${char}</span>`;
+                }).join('');
+            });
+        }
+        initLinkAnimation();
+
+        // --- INDIAN CLOCK LOGIC ---
+        function updateClock() {
+            const clockElement = document.getElementById('live-clock');
+            if(!clockElement) return;
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', {
+                timeZone: 'Asia/Kolkata',
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            clockElement.innerText = `IND ${timeString}`;
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+
+    </script>
+</body>
+</html>

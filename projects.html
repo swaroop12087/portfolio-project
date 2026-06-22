@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swaroop Rathi | Creative Developer</title>
+    
+      <!-- LINK TO YOUR EXTERNAL CSS FILE -->
+    <link rel="stylesheet" href="project.css">
+
+    <!-- Three.js (For Footer) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;900&family=JetBrains+Mono:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- --- DEPENDENCIES --- -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#0a0a0a',
+                        darkcard: '#171717',
+                        primary: '#3b82f6', // Blue for Light Mode
+                        secondary: '#ec4899',
+                        accent: '#facc15', // Yellow for Dark Mode
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    screens: {
+                        'xs': '475px',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-[#f3f4f6] dark:bg-darkbg dark:text-gray-100 selection:bg-primary selection:text-white">
+
+    <!-- MOBILE MENU OVERLAY (SWAROOP) -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white/95 dark:bg-darkbg/95 backdrop-blur-xl z-[60] flex flex-col justify-center items-center gap-8 hidden-menu">
+        <button id="close-menu" class="absolute top-6 right-6 text-3xl text-black dark:text-white">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="home.html" class="mobile-link text-3xl font-['Space_Grotesk'] font-bold text-black dark:text-white hover:text-primary dark:hover:text-yellow-400 transition-colors">Home</a>
+        <a href="aboutme.html" class="mobile-link text-3xl font-['Space_Grotesk'] font-bold text-black dark:text-white hover:text-primary dark:hover:text-yellow-400 transition-colors">About</a>
+        <a href="projects.html" class="mobile-link text-3xl font-['Space_Grotesk'] font-bold text-black dark:text-white hover:text-primary dark:hover:text-yellow-400 transition-colors">Projects</a>
+        <a href="skills.html" class="mobile-link text-3xl font-['Space_Grotesk'] font-bold text-black dark:text-white hover:text-primary dark:hover:text-yellow-400 transition-colors">Skills</a>
+        <a href="services.html" class="mobile-link text-3xl font-['Space_Grotesk'] font-bold text-black dark:text-white hover:text-primary dark:hover:text-yellow-400 transition-colors">Services</a>
+        <a href="contact.html" class="mobile-link text-3xl font-['Space_Grotesk'] font-bold text-black dark:text-white hover:text-primary dark:hover:text-yellow-400 transition-colors">Contact</a>
+    </div>
+
+    <!-- NAVBAR (SWAROOP) -->
+    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 md:px-12 md:py-5 transition-all duration-300 bg-transparent" id="main-nav">
+        <!-- Logo -->
+        <a href="home.html" class="text-2xl md:text-3xl font-bold font-['Space_Grotesk'] tracking-tighter text-black dark:text-white z-50">
+            SWAROOP
+        </a>
+
+        <!-- Desktop Links -->
+        <div class="hidden md:flex gap-8 items-center text-black dark:text-white">
+            <a href="home.html" class="nav-link-item">Home</a>
+            <div class="relative group h-full flex items-center">
+                <button class="nav-link-item flex items-center gap-1">
+                    About
+                    <i class="fas fa-chevron-down text-xs ml-1 transition-transform group-hover:rotate-180"></i>
+                </button>
+                <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top -translate-y-2 group-hover:translate-y-0">
+                    <div class="bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-xl shadow-xl overflow-hidden min-w-[180px] p-2 flex flex-col gap-1">
+                        <a href="aboutme.html" class="block px-4 py-2 text-sm font-bold text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-white/5 hover:text-blue-600 dark:hover:text-yellow-300 rounded-lg transition-colors font-['Outfit'] text-center">About Me</a>
+                        <a href="education.html" class="block px-4 py-2 text-sm font-bold text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-white/5 hover:text-blue-600 dark:hover:text-yellow-300 rounded-lg transition-colors font-['Outfit'] text-center">Education</a>
+                        <a href="testimonials.html" class="block px-4 py-2 text-sm font-bold text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-white/5 hover:text-blue-600 dark:hover:text-yellow-300 rounded-lg transition-colors font-['Outfit'] text-center">Testimonials</a>
+                    </div>
+                </div>
+            </div>
+            <a href="projects.html" class="nav-link-item">Projects</a>
+            <a href="skills.html" class="nav-link-item">Skills</a>
+            <a href="services.html" class="nav-link-item">Services</a>
+            <a href="contact.html" class="nav-link-item">Contact</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="flex items-center gap-4 md:hidden">
+            <button id="open-menu" class="text-black dark:text-white text-2xl p-2">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- CONTENT WRAPPER -->
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+            
+            <!-- Liquid Background (Fixed Behind) -->
+            <div class="bg-fixed">
+                <div class="orb orb-1"></div>
+                <div class="orb orb-2"></div>
+                <div class="orb orb-3"></div>
+                <div class="orb orb-4"></div>
+                <div class="noise-overlay"></div>
+            </div>
+
+            <!-- Hero Section -->
+            <section id="home" class="relative z-10 min-h-screen flex flex-col justify-center px-6 md:px-20 max-w-[1600px] mx-auto pt-20">
+                <div class="mb-8 reveal-blur" style="transition-delay: 0ms;">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-white/10 border border-blue-300 dark:border-yellow-300 backdrop-blur-sm shadow-sm">
+                       <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                        </span>
+                        <span class="font-['Outfit'] text-xs font-bold text-gray-900 dark:text-white tracking-wider uppercase">Open to Opportunities</span>
+                    </div>
+                </div>
+
+                <h1 class="hero-name text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-extrabold leading-[0.95] tracking-tight mb-10 text-gray-900 dark:text-white font-['Space_Grotesk']">
+                    <span class="reveal-blur block" style="transition-delay: 100ms;">CRAFTING</span>
+                    <span class="reveal-blur block gradient-text" style="transition-delay: 200ms;">DIGITAL MAGIC</span>
+                </h1>
+                
+                <div class="flex flex-col md:flex-row gap-10 md:items-end reveal-blur" style="transition-delay: 300ms;">
+                    <p class="text-gray-600 dark:text-gray-400 max-w-lg text-lg leading-relaxed font-light">
+                        I'm a Full Stack Creative Engineer who builds accessible, pixel-perfect, and performant web experiences.
+                    </p>
+                    
+                    <button onclick="document.getElementById('work').scrollIntoView({behavior: 'smooth'})" class="modern-btn px-8 py-4 rounded-full font-bold text-sm tracking-widest flex items-center gap-3 shadow-xl w-fit">
+                        EXPLORE WORK
+                        <i class="fas fa-arrow-down"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Work Section -->
+            <section id="work" class="relative z-10 py-32 px-6 md:px-20 max-w-[1600px] mx-auto">
+                <div class="mb-24 flex flex-col md:flex-row justify-between items-end border-b border-gray-200 dark:border-gray-800 pb-6 reveal-blur">
+                    <div>
+                        <span class="text-blue-600 dark:text-yellow-400 mono-font text-sm font-bold tracking-widest block mb-2 font-['Outfit']">01 // PORTFOLIO</span>
+                        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] text-gray-900 dark:text-white">SELECTED WORKS</h2>
+                    </div>
+                    <span class="font-['Outfit'] text-gray-400 text-xs tracking-widest uppercase hidden md:block mb-2">Curated Projects 2024-2025</span>
+                </div>
+
+                <div id="projects-container" class="flex flex-col gap-32 md:gap-48">
+                    <!-- Projects injected via JS -->
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <div class="footer-wrapper" id="contact">
+                <div class="glow-overlay"></div>
+                <div class="glow-overlay1"></div>
+                <div class="top-section">
+                    <div class="visual-area"><div id="footer-canvas-container" title="Interactive Data Field"></div></div>
+                    <div class="content-area">
+                        <h1 class="main-title text-gray-900 dark:text-white">Let's build your next <br><span class="changing-word" id="word-rotator">experiential</span> <br>project together.</h1>
+                        <div class="links-grid">
+                            <!-- Column 1 -->
+                            <div>
+                                <span class="col-header">Primary</span>
+                                <div class="link-list">
+                                    <a href="home.html" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="char-anim">Home</a>
+                                    <a href="aboutme.html" class="char-anim">About Me</a>
+                                    <a href="projects.html" class="char-anim">Projects</a>
+                                    <a href="contact.html" class="char-anim">Contact</a>
+                                </div>
+                            </div>
+                            <!-- Column 2 -->
+                            <div>
+                                <span class="col-header">Go Deeper</span>
+                                <div class="link-list">
+                                    <a href="education.html" class="char-anim">Education</a>
+                                    <a href="testimonials.html" class="char-anim">Testimonials</a>
+                                    <a href="skills.html" class="char-anim">Skills</a>
+                                    <a href="services.html" class="char-anim">Services</a>
+                                </div>
+                            </div>
+                            <!-- Column 3 -->
+                            <div>
+                                <span class="col-header">Socials</span>
+                                <div class="link-list">
+                                    <a href="#" class="flex items-center gap-3 group">
+                                        <i class="fab fa-github text-xl transition-colors duration-300 text-black dark:text-white group-hover:opacity-80"></i>
+                                        <span class="char-anim">GitHub</span>
+                                    </a>
+                                    <a href="#" class="flex items-center gap-3 group">
+                                        <i class="fab fa-linkedin text-xl transition-colors duration-300 group-hover:text-[#0077b5] dark:group-hover:text-sky-300"></i>
+                                        <span class="char-anim">LinkedIn</span>
+                                    </a>
+                                    <a href="#" class="flex items-center gap-3 group">
+                                        <i class="fab fa-instagram text-xl transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-tr group-hover:from-yellow-400 group-hover:via-pink-500 group-hover:to-purple-600"></i>
+                                        <span class="char-anim">Instagram</span>
+                                    </a>
+                                    <a href="#" class="!flex items-center gap-3 group whitespace-nowrap">
+                                        <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current transition-colors duration-300 text-black dark:text-white group-hover:opacity-80">
+                                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                                        </svg>
+                                        <span class="char-anim">X / Twitter</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Column 4 -->
+                            <div>
+                                <span class="col-header">Contact</span>
+                                <div class="link-list">
+                                    <a href="mailto:swaroopr2345@gmail.com" class="group email-link transition-colors duration-300 hover:text-blue-600 dark:hover:text-yellow-400 whitespace-nowrap">
+                                        <span class="char-anim">swaroopr2345@gmail.com</span>
+                                    </a>
+                                    <a href="contact.html" class="char-anim">Contact Form</a>
+                                    
+                                    <!-- Newsletter Input (Corrected with Dark Mode) -->
+                                    <div class="mt-6">
+                                        <label class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-2 block">Newsletter</label>
+                                        <div class="flex items-center border-b border-gray-300 dark:border-gray-700 py-2 focus-within:border-blue-600 dark:focus-within:border-yellow-400 transition-colors">
+                                            <input type="email" placeholder="Email" class="bg-transparent border-none outline-none text-gray-900 dark:text-white w-full placeholder-gray-400 text-sm">
+                                            <button class="ml-2 text-blue-600 dark:text-yellow-400 hover:text-black dark:hover:text-white transition-colors uppercase text-xs font-bold tracking-widest">SUB</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-bar">
+                    <div>&copy; 2025 SWAROOP RATHI</div>
+                    <div id="live-clock">IND --:--:--</div>
+                    <div class="hidden sm:block" style="font-style: italic;">WE COULD JUST EAT YOU UP ///////</div>
+                </div>
+                <a href="projects.html" class="massive-brand">Swaroop</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal-overlay" class="fixed inset-0 z-[100] bg-gray-900/60 backdrop-blur-md hidden transition-opacity duration-500 opacity-0 flex items-center justify-center p-4">
+        <div id="modal-card" class="bg-white dark:bg-darkcard w-full max-w-6xl h-[90vh] rounded-3xl flex flex-col md:flex-row overflow-hidden transform scale-95 transition-transform duration-500 shadow-2xl relative">
+            <button onclick="closeModal()" class="absolute top-6 right-6 z-50 w-12 h-12 flex items-center justify-center bg-white text-gray-900 hover:bg-black hover:text-white rounded-full transition-all shadow-xl border border-gray-100">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <div class="w-full md:w-7/12 h-2/5 md:h-full bg-gray-100 dark:bg-gray-800 relative overflow-hidden">
+                <img id="modal-img" src="" class="w-full h-full object-cover transition-transform duration-1000">
+                <div class="absolute inset-0 bg-black/10"></div>
+            </div>
+            <div class="w-full md:w-5/12 h-3/5 md:h-full p-8 md:p-12 flex flex-col justify-between">
+                <div class="overflow-y-auto pr-2 custom-scrollbar">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-2 h-2 bg-blue-600 dark:bg-yellow-400 rounded-full animate-pulse"></div>
+                        <span id="modal-cat" class="font-['Outfit'] text-blue-600 dark:text-yellow-400 text-xs tracking-widest uppercase font-bold">Category</span>
+                    </div>
+                    <h2 id="modal-title" class="text-4xl font-bold font-['Space_Grotesk'] mb-6 leading-tight text-gray-900 dark:text-white">Title</h2>
+                    <div class="space-y-6 text-gray-600 dark:text-gray-400 leading-relaxed text-lg font-light">
+                        <p id="modal-desc">Description...</p>
+                    </div>
+                    <div class="mt-10 pt-8 border-t border-gray-100 dark:border-gray-700">
+                        <p class="font-['Outfit'] text-xs text-gray-400 mb-4 uppercase tracking-wider font-bold">Technologies</p>
+                        <div id="modal-stack" class="flex flex-wrap gap-2"></div>
+                    </div>
+                </div>
+                <div class="flex gap-4 mt-8">
+                    <a id="btn-live" href="#" target="_blank" class="flex-1 py-4 bg-blue-600 text-white font-bold text-center rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 flex items-center justify-center gap-2">
+                        Live Demo
+                    </a>
+                    <a id="btn-github" href="#" target="_blank" class="flex-1 py-4 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white font-bold text-center rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-all flex items-center justify-center gap-2">
+                        GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FLOATING BUTTONS -->
+    <div class="fixed bottom-8 right-8 z-[100] flex flex-col gap-4">
+        <button id="theme-toggle" class="theme-toggle fixed-btn w-12 h-12 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-lg flex items-center justify-center">
+            <svg class="icon-svg dark:hidden" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <svg class="icon-svg hidden dark:block" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+        <button id="scroll-top-btn" class="fixed-btn w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-colors duration-300 border border-gray-200 dark:border-gray-700 bg-white text-black dark:bg-black dark:text-white hover:bg-blue-600 hover:text-white dark:hover:bg-yellow-400 dark:hover:text-black">
+            <svg class="icon-svg" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+        </button>
+    </div>
+
+    <script>
+        // ... (All JS logic preserved identically) ...
+        const menuBtn = document.getElementById('open-menu');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const nav = document.getElementById('main-nav');
+
+        function toggleMenu() {
+            if (mobileMenu.classList.contains('hidden-menu')) {
+                mobileMenu.classList.remove('hidden-menu');
+                mobileMenu.classList.add('visible-menu');
+                document.body.style.overflow = 'hidden'; 
+            } else {
+                mobileMenu.classList.add('hidden-menu');
+                mobileMenu.classList.remove('visible-menu');
+                document.body.style.overflow = '';
+            }
+        }
+
+        if(menuBtn) menuBtn.addEventListener('click', toggleMenu);
+        if(closeMenuBtn) closeMenuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.remove('bg-transparent');
+                nav.classList.add('bg-white/30', 'backdrop-blur-md', 'shadow-sm', 'dark:bg-black/30');
+            } else {
+                nav.classList.add('bg-transparent');
+                nav.classList.remove('bg-white/30', 'backdrop-blur-md', 'shadow-sm', 'dark:bg-black/30');
+            }
+        });
+
+        // Theme & Scroll
+        const scrollBtn = document.getElementById('scroll-top-btn');
+        const themeBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        if(localStorage.getItem('theme') === 'dark') {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
+        }
+
+        if(themeBtn) {
+            themeBtn.addEventListener('click', () => {
+                htmlElement.classList.toggle('dark');
+                localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) scrollBtn.classList.add('show');
+            else scrollBtn.classList.remove('show');
+        });
+
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Load Animation
+        // window.addEventListener('load', () => {
+        //     const preloader = document.getElementById('preloader');
+        //     setTimeout(() => {
+        //         preloader.style.opacity = '0';
+        //         document.body.classList.add('loaded');
+        //     }, 1000);
+        //     setTimeout(() => preloader.style.display = 'none', 1800);
+        // });
+
+        // Immediate reveal on load to prevent blank screen
+        window.addEventListener('DOMContentLoaded', () => {
+             document.querySelectorAll('.reveal-blur, .reveal-slide-left, .reveal-slide-right').forEach(el => {
+                el.classList.add('is-visible');
+            });
+        });
+
+        // Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal-blur, .reveal-slide-left, .reveal-slide-right').forEach(el => observer.observe(el));
+
+        // Footer 3D
+        function initFooter3D() {
+            const footerContainer = document.getElementById('footer-canvas-container'); if(!footerContainer) return;
+            const fScene = new THREE.Scene(); 
+            const fCamera = new THREE.PerspectiveCamera(45, footerContainer.clientWidth / footerContainer.clientHeight, 0.1, 1000); 
+            fCamera.position.set(0, 0, 14);
+            const fRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); 
+            fRenderer.setSize(footerContainer.clientWidth, footerContainer.clientHeight); 
+            fRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); 
+            footerContainer.appendChild(fRenderer.domElement);
+            
+            const matBlue = new THREE.MeshBasicMaterial({ color: 0x3b82f6, transparent: true, opacity: 0.8 });
+            const matPink = new THREE.MeshBasicMaterial({ color: 0xec4899, transparent: true, opacity: 0.8 });
+            const fieldGroup = new THREE.Group(); fScene.add(fieldGroup);
+            
+            for(let i=0; i<30; i++){ 
+                const height = 1.5 + Math.random() * 4; 
+                const geo = new THREE.BoxGeometry(0.08, height, 0.08); 
+                const m = new THREE.Mesh(geo, Math.random() > 0.5 ? matBlue : matPink); 
+                m.position.set((Math.random() - 0.5) * 8, (Math.random() - 0.5) * 8, (Math.random() - 0.5) * 6); 
+                m.userData = { phase: Math.random() * Math.PI * 2 }; 
+                fieldGroup.add(m); 
+            }
+            
+            fieldGroup.rotation.z = -0.4; fieldGroup.rotation.y = 0.2; fieldGroup.rotation.x = 0.1; 
+            let fMouseX = 0; let fMouseY = 0;
+            
+            if (window.matchMedia("(min-width: 768px)").matches) {
+                 footerContainer.addEventListener('mousemove', (e) => { 
+                    const rect = footerContainer.getBoundingClientRect(); 
+                    fMouseX = (e.clientX - rect.left - rect.width/2) * 0.002; 
+                    fMouseY = (e.clientY - rect.top - rect.height/2) * 0.002; 
+                });
+                footerContainer.addEventListener('mouseleave', () => { fMouseX = 0; fMouseY = 0; });
+            }
+
+            function animateFooter() { 
+                requestAnimationFrame(animateFooter); 
+                const time = Date.now() * 0.001; 
+                fieldGroup.children.forEach(bar => { bar.position.y += Math.sin(time + bar.userData.phase) * 0.005; }); 
+                fieldGroup.rotation.x += (fMouseY - (fieldGroup.rotation.x - 0.1)) * 0.05; 
+                fieldGroup.rotation.y += (fMouseX - (fieldGroup.rotation.y - 0.2)) * 0.05; 
+                fRenderer.render(fScene, fCamera); 
+            } 
+            animateFooter();
+            
+            window.addEventListener('resize', () => { 
+                fCamera.aspect = footerContainer.clientWidth / footerContainer.clientHeight; 
+                fCamera.updateProjectionMatrix(); 
+                fRenderer.setSize(footerContainer.clientWidth, footerContainer.clientHeight); 
+            });
+        }
+        initFooter3D();
+
+        // Utilities
+        const words = ["experiential", "branding", "digital", "power", "future"];
+        let currentIndex = 0;
+        const wordSpan = document.getElementById("word-rotator");
+
+        function splitTextRotator(target) {
+            if(!target) return;
+            const text = target.innerText;
+            target.innerHTML = '';
+            text.split('').forEach((char, i) => {
+                const span = document.createElement('span');
+                span.className = 'char'; 
+                span.innerText = char === ' ' ? '\u00A0' : char;
+                span.style.setProperty('--i', i);
+                target.appendChild(span);
+            });
+        }
+
+        if(wordSpan) {
+            splitTextRotator(wordSpan);
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % words.length;
+                wordSpan.innerText = words[currentIndex];
+                splitTextRotator(wordSpan);
+            }, 3000);
+        }
+
+        document.querySelectorAll('.char-anim').forEach(element => {
+            const text = element.innerText;
+            element.innerHTML = text.split('').map((char, index) => {
+                return `<span class="${char === ' ' ? 'w-1' : ''}">${char}</span>`;
+            }).join('');
+        });
+
+        function updateClock() {
+            const clockElement = document.getElementById('live-clock');
+            if(!clockElement) return;
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', {
+                timeZone: 'Asia/Kolkata', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit'
+            });
+            clockElement.innerText = `IND ${timeString}`;
+        }
+        setInterval(updateClock, 1000); updateClock();
+
+        // Projects Data
+        const projects = [
+            {
+                title: "Leon",
+                category: "Smart Personal Assistant",
+                desc: "An open-source personal assistant that lives on your server. It performs tasks, works offline to protect privacy, and uses NLP to understand voice and text commands.",
+                tech: ["Node.js", "Python", "NLP.js"],
+                image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?q=80&w=1600&auto=format&fit=crop",
+                liveUrl: "https://getleon.ai/",
+                githubUrl: "https://github.com/leon-ai/leon"
+            },
+            {
+                title: "HospitalRun",
+                category: "Health Dashboard",
+                desc: "A world-class offline-first electronic health record (EHR) system. It visualizes patient vitals and manages appointments in low-resource environments.",
+                tech: ["React", "Node.js", "CouchDB"],
+                image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1600&auto=format&fit=crop",
+                liveUrl: "https://hospitalrun.io/",
+                githubUrl: "https://github.com/HospitalRun/hospitalrun-frontend"
+            },
+            {
+                title: "Snipe-IT",
+                category: "Asset Management",
+                desc: "A powerful, open-source asset management system featuring barcode generation, tracking, and detailed audit logs for IT assets.",
+                tech: ["Laravel", "PHP", "MySQL"],
+                image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1600&auto=format&fit=crop",
+                liveUrl: "https://snipeitapp.com/demo",
+                githubUrl: "https://github.com/snipe/snipe-it"
+            },
+            {
+                title: "TripPlanner AI",
+                category: "Travel AI",
+                desc: "An intelligent travel planning system that uses advanced AI to generate personalized itineraries based on weather, budget, and user interests.",
+                tech: ["React", "OpenAI", "Mapbox"],
+                image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=1600&auto=format&fit=crop",
+                liveUrl: "https://tripplanner.ai/",
+                githubUrl: "https://github.com/Dhravya/travel-planner-ai"
+            },
+            {
+                title: "Saleor",
+                category: "AI E-commerce Platform",
+                desc: "A headless, GraphQL-first e-commerce platform that delivers ultra-fast shopping experiences. Features AI-driven product recommendations, dynamic pricing modules, and a modern dashboard for managing global trade.",
+                tech: ["Next.js", "GraphQL", "Python", "React"],
+                image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=1600&auto=format&fit=crop",
+                liveUrl: "https://saleor.io/",
+                githubUrl: "https://github.com/saleor/saleor"
+            },
+            {
+                title: "Actual Budget",
+                category: "Smart Expense Tracker",
+                desc: "A local-first personal finance system with bank synchronization. It uses smart rules to categorize expenses automatically and provides privacy-focused financial forecasting and budgeting tools.",
+                tech: ["React", "Node.js", "SQLite", "Electron"],
+                image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=1600&auto=format&fit=crop",
+                liveUrl: "https://actualbudget.com/",
+                githubUrl: "https://github.com/actualbudget/actual"
+            }
+        ];
+
+        const container = document.getElementById('projects-container');
+
+        projects.forEach((proj, i) => {
+            const row = document.createElement('div');
+            const isAlternate = i % 2 !== 0;
+            
+            const flexDir = isAlternate ? 'md:flex-row-reverse' : 'md:flex-row';
+            const textAlign = isAlternate ? 'md:text-right' : 'md:text-left';
+            const itemsAlign = isAlternate ? 'md:items-end' : 'md:items-start';
+            const justify = isAlternate ? 'md:justify-end' : 'md:justify-start';
+            const imgAnim = isAlternate ? 'reveal-slide-right' : 'reveal-slide-left';
+            const textAnim = isAlternate ? 'reveal-slide-left' : 'reveal-slide-right';
+
+            row.className = `group flex flex-col ${flexDir} items-center gap-12 md:gap-24 cursor-pointer`;
+            row.onclick = () => openModal(proj);
+
+            row.innerHTML = `
+                <div class="w-full md:w-3/5 ${imgAnim} relative z-10 project-card">
+                    <div class="image-wrapper aspect-[16/10] bg-gray-100 shadow-2xl shadow-blue-900/5 border border-white/50">
+                        <img src="${proj.image}" class="w-full h-full object-cover project-card-img" alt="${proj.title}">
+                    </div>
+                    <div class="absolute -top-12 ${isAlternate ? '-right-8' : '-left-8'} text-[120px] leading-none font-black text-gray-900 dark:text-white opacity-[0.03] font-['Space_Grotesk'] z-[-1]">
+                        0${i + 1}
+                    </div>
+                </div>
+                <div class="w-full md:w-2/5 flex flex-col ${itemsAlign} ${textAlign} ${textAnim}" style="transition-delay: 150ms;">
+                    <div class="flex items-center gap-4 mb-6">
+                        ${isAlternate ? '<div class="h-px w-12 bg-blue-600 dark:bg-yellow-400"></div>' : ''}
+                        <span class="font-['Outfit'] text-blue-600 dark:text-yellow-400 text-xs font-bold tracking-widest uppercase">${proj.category}</span>
+                        ${!isAlternate ? '<div class="h-px w-12 bg-blue-600 dark:bg-yellow-400"></div>' : ''}
+                    </div>
+                    <h3 class="text-5xl md:text-6xl font-bold mb-6 text-gray-900 dark:text-white font-['Space_Grotesk'] group-hover:text-blue-600 dark:group-hover:text-yellow-400 transition-colors">
+                        ${proj.title}
+                    </h3>
+                    <p class="text-gray-500 dark:text-gray-400 mb-8 leading-relaxed line-clamp-3 text-lg font-light">
+                        ${proj.desc}
+                    </p>
+                    <div class="flex flex-wrap gap-3 mb-8 ${justify}">
+                        ${proj.tech.map(t => `
+                            <span class="px-3 py-1 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md text-xs font-medium text-gray-600 dark:text-gray-300 font-mono group-hover:border-blue-200 dark:group-hover:border-yellow-400 group-hover:bg-blue-50 dark:group-hover:bg-yellow-900/20 group-hover:text-blue-600 dark:group-hover:text-yellow-400 transition-colors">
+                                ${t}
+                            </span>
+                        `).join('')}
+                    </div>
+                    
+                    <div class="flex flex-wrap items-center gap-6 mt-2">
+                        <button onclick="openModal(projects[${i}])" class="flex items-center gap-2 text-gray-900 dark:text-white font-['Outfit'] text-xs font-bold tracking-widest group-hover:text-blue-600 dark:group-hover:text-yellow-400 transition-colors">
+                            <span class="border-b-2 border-current pb-1">VIEW DETAILS</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        
+                        <div class="flex items-center gap-4 text-gray-500 dark:text-gray-400">
+                            <a href="${proj.liveUrl}" target="_blank" onclick="event.stopPropagation()" class="flex items-center gap-2 hover:text-blue-600 dark:hover:text-yellow-400 transition-colors" title="Live Demo">
+                                <i class="fas fa-external-link-alt text-lg"></i>
+                                <span class="text-xs font-bold tracking-widest font-['Outfit']">LIVE</span>
+                            </a>
+                            <a href="${proj.githubUrl}" target="_blank" onclick="event.stopPropagation()" class="flex items-center gap-2 hover:text-gray-900 dark:hover:text-yellow-400 transition-colors" title="View Code">
+                                <i class="fab fa-github text-xl"></i>
+                                <span class="text-xs font-bold tracking-widest font-['Outfit']">CODE</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            `;
+            container.appendChild(row);
+            
+            observer.observe(row.querySelector('.project-card'));
+            observer.observe(row.querySelector('div:last-child'));
+        });
+
+        // Modal Logic
+        const modal = document.getElementById('modal-overlay');
+        const modalContent = document.getElementById('modal-card');
+        const btnLive = document.getElementById('btn-live');
+        const btnGithub = document.getElementById('btn-github');
+
+        function openModal(data) {
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-cat').innerText = data.category;
+            document.getElementById('modal-desc').innerText = data.desc;
+            document.getElementById('modal-img').src = data.image;
+            document.getElementById('modal-stack').innerHTML = data.tech.map(t => `<span class="text-xs border border-gray-200 dark:border-gray-700 px-3 py-1.5 text-gray-600 dark:text-gray-300 font-mono rounded-md bg-gray-50 dark:bg-gray-800 font-semibold">${t}</span>`).join('');
+            
+            btnLive.href = data.liveUrl;
+            btnGithub.href = data.githubUrl;
+
+            modal.classList.remove('hidden');
+            void modal.offsetWidth;
+            modal.classList.remove('opacity-0');
+            modalContent.classList.remove('scale-95');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 500);
+        }
+
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) closeModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+    </script>
+</body>
+</html>

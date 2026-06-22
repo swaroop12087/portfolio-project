@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swaroop | Services</title>
+
+      <!-- LINK TO YOUR EXTERNAL CSS FILE -->
+    <link rel="stylesheet" href="services.css">
+    <!-- 1. DEPENDENCIES -->
+    
+    <!-- Three.js (For Footer 3D Effect) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- GSAP (For Animations) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;900&family=JetBrains+Mono:wght@400;700&family=Oswald:wght@700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome (UPDATED to 6.5.1 to support X-Twitter icon) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#020617', 
+                        darkcard: '#0f172a',
+                        primary: '#3b82f6',
+                        slate: {
+                            850: '#151e2e',
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        brand: {
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        heading: ['Playfair Display', 'serif'],
+                    },
+                    screens: { 'xs': '475px' },
+                    animation: {
+                        'blob': 'blob 10s infinite',
+                        'text-reveal': 'textReveal 1s cubic-bezier(0.77, 0, 0.175, 1) 0.5s forwards',
+                        'slide-up-fade': 'slideUpFade 0.6s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                        'scale-in': 'scaleIn 0.5s ease-out forwards',
+                        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        textReveal: {
+                            '0%': { transform: 'translate(0, 100%)' },
+                            '100%': { transform: 'translate(0, 0)' },
+                        },
+                        slideUpFade: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(1.1)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="text-slate-800 dark:text-slate-200 antialiased transition-colors duration-500 selection:bg-indigo-500 selection:text-white">
+
+    <!-- Dynamic Backgrounds -->
+    <div class="bg-gradient-mesh light-theme-bg dark:dark-theme-bg"></div>
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-5 md:px-12 transition-all duration-300 bg-transparent text-black dark:text-white" id="main-nav">
+        <a href="index.html" onclick="showHome()" class="text-2xl md:text-3xl font-bold font-['Space_Grotesk'] tracking-tighter relative z-50">SWAROOP</a>
+        <div class="hidden md:flex gap-8 items-center">
+            <a href="index.html" onclick="showHome()" class="nav-link-item">Home</a>
+            <div class="relative group h-full flex items-center">
+                <button class="nav-link-item flex items-center gap-1">
+                    About
+                    <svg class="w-3 h-3 mt-0.5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top -translate-y-2 group-hover:translate-y-0">
+                    <div class="bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-xl shadow-xl overflow-hidden min-w-[180px] p-2 flex flex-col gap-1">
+                        <a href="aboutme.html" class="block px-4 py-2 text-sm font-bold text-gray-700 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-600 dark:hover:text-yellow-300 rounded-lg transition-colors text-center">About me</a>
+                        <a href="education.html" class="block px-4 py-2 text-sm font-bold text-gray-700 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-600 dark:hover:text-yellow-300 rounded-lg transition-colors text-center">Education</a>
+                        <a href="testimonials.html" class="block px-4 py-2 text-sm font-bold text-gray-700 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-600 dark:hover:text-yellow-300 rounded-lg transition-colors text-center">Testimonials</a>
+                    </div>
+                </div>
+            </div>
+            <a href="projects.html" class="nav-link-item">Projects</a>
+            <a href="skills.html" class="nav-link-item">Skills</a>
+            <a href="services.html" class="nav-link-item">Services</a>
+            <a href="contact.html" class="nav-link-item">Contact</a>
+        </div>
+        <div class="flex items-center gap-4 md:hidden relative z-50">
+            <button id="mobile-menu-btn" class="text-2xl focus:outline-none">
+                <svg class="icon-svg w-8 h-8" viewBox="0 0 24 24">
+                    <path class="menu-open" d="M4 6h16M4 12h16M4 18h16"></path>
+                    <path class="menu-close hidden" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+
+    <!-- --- MOBILE MENU OVERLAY --- -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-white/95 dark:bg-darkbg/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 md:hidden">
+        <a href="#" class="text-3xl font-bold font-['Space_Grotesk'] text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors" onclick="toggleMobileMenu()">Home</a>
+        <div class="flex flex-col items-center gap-4">
+             <span class="text-sm uppercase tracking-widest text-gray-500 font-bold">About</span>
+             <a href="aboutme.html" class="text-xl font-medium text-gray-800 dark:text-gray-200" onclick="toggleMobileMenu()">About me</a>
+             <a href="education.html" class="text-xl font-medium text-gray-800 dark:text-gray-200" onclick="toggleMobileMenu()">Education</a>
+             <a href="testimonials.html" class="text-xl font-medium text-gray-800 dark:text-gray-200" onclick="toggleMobileMenu()">Testimonials</a>
+        </div>
+        <a href="projects.html" class="text-3xl font-bold font-['Space_Grotesk'] text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors" onclick="toggleMobileMenu()">Projects</a>
+        <a href="skills.html" class="text-3xl font-bold font-['Space_Grotesk'] text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors" onclick="toggleMobileMenu()">Skills</a>
+        <a href="services.html" class="text-3xl font-bold font-['Space_Grotesk'] text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors" onclick="toggleMobileMenu()">Services</a>
+        <a href="contact.html" class="text-3xl font-bold font-['Space_Grotesk'] text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors" onclick="toggleMobileMenu()">Contact</a>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <!-- Theme Toggle: Black bg in light mode (Moon), White bg in dark mode (Sun) -->
+        <button id="theme-toggle" class="fab bg-black text-white dark:bg-white dark:text-black border border-transparent shadow-lg" aria-label="Toggle Theme">
+            <i class="fas fa-moon text-xl !block dark:!hidden"></i>
+            <i class="fas fa-sun text-xl !hidden dark:!block"></i>
+        </button>
+        
+        <!-- Scroll Top: White/Black default, Blue on Hover -->
+        <button id="scroll-top" class="fab scroll-top bg-white text-black border border-gray-200 dark:bg-black dark:text-white dark:border-gray-800 hover:bg-blue-600 hover:text-white hover:border-blue-600 dark:hover:bg-blue-600 dark:hover:text-white dark:hover:border-blue-600" aria-label="Scroll to Top">
+            <i class="fas fa-arrow-up text-xl"></i>
+        </button>
+    </div>
+
+    <!-- CASE STUDY MODAL -->
+    <div id="case-study-modal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true">
+        <div class="absolute inset-0 bg-slate-950/90 backdrop-blur-xl modal-backdrop" id="modal-backdrop"></div>
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4 sm:p-0">
+                <div class="relative transform overflow-hidden rounded-2xl bg-white dark:bg-slate-900 text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-6xl modal-panel border border-slate-100 dark:border-slate-800" id="modal-panel">
+                    <button onclick="closeCaseStudy()" class="absolute top-6 right-6 z-50 bg-black/30 hover:bg-black/60 backdrop-blur-md p-2 rounded-full shadow-lg transition group border border-white/20">
+                        <i class="fas fa-times text-white text-xl w-8 h-8 flex items-center justify-center"></i>
+                    </button>
+                    <div id="modal-content-inject"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW 1: HOME -->
+    <div id="home-view">
+        <!-- Hero Section -->
+        <div class="relative h-[100vh] parallax flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Space" class="w-full h-full object-cover">
+                <!-- Overlay adjusted for text visibility -->
+                <div class="absolute inset-0 bg-gradient-to-b from-slate-50/80 via-slate-50/50 to-slate-50 dark:from-slate-950/90 dark:via-slate-950/80 dark:to-slate-950"></div>
+            </div>
+            <div class="relative z-10 text-center px-4 max-w-6xl mx-auto pt-20">
+                <div class="animate-fade-in-up">
+                    <span class="inline-block py-1.5 px-5 rounded-full bg-indigo-500/10 dark:bg-white/5 backdrop-blur-md text-indigo-600 dark:text-indigo-200 text-xs md:text-sm font-bold tracking-[0.2em] mb-8 border border-indigo-200 dark:border-white/10 uppercase shadow-sm">Digital Excellence</span>
+                </div>
+                <h1 class="heading-font text-6xl md:text-9xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight leading-[1.1]">
+                    <span class="reveal-text-container"><span class="block animate-[textReveal_1s_cubic-bezier(0.77,0,0.175,1)_0.1s_forwards] translate-y-full">We Build</span></span><br>
+                    <span class="reveal-text-container"><span class="block animate-[textReveal_1s_cubic-bezier(0.77,0,0.175,1)_0.3s_forwards] translate-y-full text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400">Digital Empires</span></span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-600 dark:text-slate-300 font-light leading-relaxed max-w-3xl mx-auto mb-12 animate-fade-in-up" style="animation-delay: 0.5s">Merging creative innovation with strategic engineering to elevate brands beyond the ordinary.</p>
+                <div class="animate-bounce absolute bottom-2 left-1/2 -translate-x-1/2 text-slate-400 dark:text-white/50"><i class="fas fa-chevron-down text-2xl"></i></div>
+            </div>
+        </div>
+
+        <!-- Services Grid -->
+        <section id="services-grid" class="relative z-20 bg-slate-50/90 dark:bg-slate-950/90 backdrop-blur-lg py-32 -mt-20 rounded-t-[3rem] shadow-[0_-20px_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_-20px_60px_-15px_rgba(0,0,0,0.5)] transition-colors duration-500">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-20">
+                    <span class="text-indigo-600 dark:text-indigo-400 font-bold tracking-widest uppercase text-xs mb-3 block">Our Expertise</span>
+                    <h2 class="heading-font text-4xl md:text-5xl font-bold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-yellow-400 transition-colors duration-300 cursor-default">Digital Solutions</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="cards-container"></div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section id="process-section" class="py-32 bg-white/50 dark:bg-slate-900/50 relative overflow-hidden transition-colors duration-500">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-24">
+                    <h2 class="heading-font text-4xl font-bold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-yellow-400 transition-colors duration-300 cursor-default">The Process</h2>
+                    <p class="mt-4 text-slate-900 dark:text-slate-300 max-w-2xl mx-auto">Precision in every step. From the first spark of an idea to the final polished product.</p>
+                </div>
+                <div class="relative hidden lg:block mb-12">
+                    <div class="absolute top-1/2 w-full h-px bg-slate-200 dark:bg-slate-800 -z-10 transform -translate-y-1/2"></div>
+                    <div class="grid grid-cols-4 gap-4 text-center">
+                        <div class="relative z-10 group cursor-default">
+                            <div class="w-20 h-20 mx-auto bg-white dark:bg-slate-800 border-2 border-indigo-100 dark:border-slate-700 rounded-2xl rotate-45 flex items-center justify-center shadow-lg group-hover:border-indigo-500 group-hover:bg-indigo-600 dark:group-hover:border-yellow-400 dark:group-hover:bg-yellow-400 transition-all duration-500 mb-8">
+                                <i class="fas fa-lightbulb -rotate-45 text-indigo-600 dark:text-indigo-400 text-2xl group-hover:text-white dark:group-hover:text-black transition-colors"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-yellow-400 transition-colors">Discovery</h3>
+                        </div>
+                        <div class="relative z-10 group cursor-default">
+                            <div class="w-20 h-20 mx-auto bg-white dark:bg-slate-800 border-2 border-indigo-100 dark:border-slate-700 rounded-2xl rotate-45 flex items-center justify-center shadow-lg group-hover:border-indigo-500 group-hover:bg-indigo-600 dark:group-hover:border-yellow-400 dark:group-hover:bg-yellow-400 transition-all duration-500 mb-8">
+                                <i class="fas fa-pencil-ruler -rotate-45 text-indigo-600 dark:text-indigo-400 text-2xl group-hover:text-white dark:group-hover:text-black transition-colors"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-yellow-400 transition-colors">Design</h3>
+                        </div>
+                        <div class="relative z-10 group cursor-default">
+                            <div class="w-20 h-20 mx-auto bg-white dark:bg-slate-800 border-2 border-indigo-100 dark:border-slate-700 rounded-2xl rotate-45 flex items-center justify-center shadow-lg group-hover:border-indigo-500 group-hover:bg-indigo-600 dark:group-hover:border-yellow-400 dark:group-hover:bg-yellow-400 transition-all duration-500 mb-8">
+                                <i class="fas fa-code -rotate-45 text-indigo-600 dark:text-indigo-400 text-2xl group-hover:text-white dark:group-hover:text-black transition-colors"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-yellow-400 transition-colors">Development</h3>
+                        </div>
+                        <div class="relative z-10 group cursor-default">
+                            <div class="w-20 h-20 mx-auto bg-white dark:bg-slate-800 border-2 border-indigo-100 dark:border-slate-700 rounded-2xl rotate-45 flex items-center justify-center shadow-lg group-hover:border-indigo-500 group-hover:bg-indigo-600 dark:group-hover:border-yellow-400 dark:group-hover:bg-yellow-400 transition-all duration-500 mb-8">
+                                <i class="fas fa-rocket -rotate-45 text-indigo-600 dark:text-indigo-400 text-2xl group-hover:text-white dark:group-hover:text-black transition-colors"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-yellow-400 transition-colors">Launch</h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- Mobile Process Fallback -->
+                <div class="lg:hidden flex flex-col gap-8 items-center text-center">
+                    <p class="text-indigo-600 dark:text-yellow-400 font-bold">Discovery &rarr; Design &rarr; Development &rarr; Launch</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack -->
+        <section class="py-20 bg-slate-900 dark:bg-black text-white overflow-hidden border-y border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 text-center mb-12">
+                <h3 class="text-2xl font-bold tracking-tight text-slate-300">Powered by Modern Tech</h3>
+            </div>
+            <div class="flex justify-center gap-12 flex-wrap opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <i class="fab fa-react text-5xl hover:text-blue-400 transition hover:scale-110 transform duration-300"></i>
+                <i class="fab fa-js text-5xl hover:text-yellow-400 transition hover:scale-110 transform duration-300"></i>
+                <i class="fab fa-html5 text-5xl hover:text-orange-500 transition hover:scale-110 transform duration-300"></i>
+                <i class="fab fa-css3-alt text-5xl hover:text-blue-500 transition hover:scale-110 transform duration-300"></i>
+                <i class="fab fa-python text-5xl hover:text-yellow-300 transition hover:scale-110 transform duration-300"></i>
+                <i class="fab fa-node text-5xl hover:text-green-500 transition hover:scale-110 transform duration-300"></i>
+                <i class="fab fa-figma text-5xl hover:text-pink-500 transition hover:scale-110 transform duration-300"></i>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- VIEW 2: DETAIL -->
+    <div id="detail-view" class="hidden-view bg-white dark:bg-slate-950 min-h-screen pt-20 transition-colors duration-500">
+        <div class="sticky top-20 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 transition-all duration-300 shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                <button onclick="showHome()" class="group flex items-center text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium transition-colors">
+                    <span class="w-8 h-8 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center mr-3 group-hover:border-indigo-200 dark:group-hover:border-indigo-500 shadow-sm transition-colors group-hover:bg-indigo-50 dark:group-hover:bg-slate-700">
+                        <i class="fas fa-arrow-left text-xs"></i>
+                    </span> Back to Services
+                </button>
+            </div>
+        </div>
+
+        <div class="bg-white/50 dark:bg-slate-900/50 border-b border-slate-100 dark:border-slate-800 relative overflow-hidden">
+             <div class="absolute inset-0" style="background-image: radial-gradient(rgba(148, 163, 184, 0.2) 1px, transparent 1px); background-size: 24px 24px;"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
+                <div class="flex flex-col lg:flex-row gap-16 items-center">
+                    <div class="lg:w-1/2 animate-fade-in-up">
+                        <span id="detail-category" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 tracking-widest uppercase bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-full">Service</span>
+                        <h1 id="detail-title" class="heading-font text-5xl md:text-7xl font-bold text-slate-900 dark:text-white mt-6 mb-8 leading-tight"></h1>
+                        <p id="detail-description" class="text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-light"></p>
+                    </div>
+                    <div class="lg:w-1/2 w-full animate-fade-in-up" style="animation-delay: 0.2s;">
+                        <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-indigo-500/20 group">
+                            <div class="absolute inset-0 bg-indigo-900/10 group-hover:bg-transparent transition duration-500 z-10"></div>
+                            <img id="detail-hero-img" src="" alt="Service Detail" class="w-full h-[400px] object-cover transform group-hover:scale-105 transition duration-1000 ease-out">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detail Content Sections -->
+        <section class="py-24 transition-colors duration-500">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="glass-panel rounded-3xl p-8 md:p-12">
+                    <div class="text-center mb-12">
+                        <h2 class="heading-font text-3xl md:text-4xl font-bold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-yellow-400 transition-colors duration-300 cursor-default">Capabilities: <span id="core-services-topic" class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400"></span></h2>
+                        <p class="text-slate-500 dark:text-slate-400 mt-4 max-w-2xl mx-auto">Comprehensive solutions tailored to your specific needs.</p>
+                    </div>
+                    <div id="core-services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 transition-colors duration-500">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <div class="glass-panel rounded-3xl p-8 md:p-12 relative overflow-hidden">
+                    <div class="text-center mb-16">
+                        <h2 class="heading-font text-3xl md:text-4xl font-bold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-yellow-400 transition-colors duration-300 cursor-default">Our Methodology</h2>
+                        <p class="text-slate-500 dark:text-slate-400 mt-4">A proven, transparent methodology for consistent excellence.</p>
+                    </div>
+                    <div class="hidden lg:block absolute top-[55%] left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-200 dark:via-slate-600 to-transparent z-0 border-t border-dashed border-slate-300 dark:border-slate-600"></div>
+                    <div id="approach-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 relative z-10"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 transition-colors duration-500">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="glass-panel rounded-3xl p-8 md:p-12">
+                    <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                        <div>
+                            <span class="text-indigo-600 dark:text-indigo-400 font-bold tracking-widest uppercase text-xs">Portfolio</span>
+                            <h2 class="heading-font text-4xl font-bold text-slate-900 dark:text-white mt-2 hover:text-indigo-600 dark:hover:text-yellow-400 transition-colors duration-300 cursor-default">Real World Impact</h2>
+                        </div>
+                        <p class="text-slate-500 dark:text-slate-400 max-w-md text-sm md:text-right mt-4 md:mt-0">Click "Case Study" on any card to see the full transformation story.</p>
+                    </div>
+                    <div id="stories-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 transition-colors duration-500">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="glass-panel rounded-3xl p-8 md:p-12">
+                    <h2 class="heading-font text-3xl font-bold text-slate-900 dark:text-white mb-12 text-center hover:text-indigo-600 dark:hover:text-yellow-400 transition-colors duration-300 cursor-default">Common Questions</h2>
+                    <div id="faq-container" class="space-y-0"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 text-center bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 transition-colors duration-500">
+            <div class="max-w-2xl mx-auto px-4">
+                <h3 class="text-3xl font-bold text-slate-900 dark:text-white mb-6">Ready to start your project?</h3>
+                <a href="#contact-footer" class="inline-flex items-center bg-indigo-600 text-white px-10 py-4 rounded-full hover:bg-indigo-700 transition shadow-xl shadow-indigo-200 dark:shadow-none font-bold text-lg group">
+                    Get a Free Quote <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- 3D ANIMATED FOOTER (Replaced Simple Footer) -->
+    <div id="contact-footer" class="footer-wrapper">
+        <div class="glow-overlay"></div>
+        <div class="glow-overlay1"></div>
+        <div class="top-section">
+            <div class="visual-area"><div id="footer-canvas-container" title="Interactive Data Field"></div></div>
+            <div class="content-area">
+                <h1 class="main-title text-gray-900 dark:text-white">Let's build your next <br><span class="changing-word" id="word-rotator">experiential</span> <br>project together.</h1>
+                <div class="links-grid">
+                      <div>
+                        <span class="col-header">Primary</span>
+                        <div class="link-list">
+                            <a href="index.html" class="char-anim effect-float-up">Home</a>
+                            <a href="aboutme.html" class="char-anim effect-float-up">About Me</a>
+                            <a href="projects.html" class="char-anim effect-float-up">Projects</a>
+                            <a href="contact.html" class="char-anim effect-float-up">Contact</a>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="col-header">Go Deeper</span>
+                        <div class="link-list">
+                            <a href="education.html" class="char-anim effect-float-up">Education</a>
+                            <a href="testimonials.html" class="char-anim effect-float-up">Testimonials</a>
+                            <a href="skills.html" class="char-anim effect-float-up">Skills</a>
+                            <a href="services.html" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="char-anim effect-float-up">Services</a>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="col-header">Socials</span>
+                        <div class="link-list">
+                            <!-- GitHub -->
+                            <a href="#" class="flex items-center gap-3 group mb-2">
+                                <div class="w-6 flex justify-center">
+                                    <i class="fab fa-github text-xl transition-colors duration-300 text-black dark:text-white group-hover:opacity-80"></i>
+                                </div>
+                                <span class="char-anim effect-float-up transition-colors duration-300">GitHub</span>
+                            </a>
+                            <!-- LinkedIn -->
+                            <a href="#" class="flex items-center gap-3 group mb-2">
+                                <div class="w-6 flex justify-center">
+                                    <i class="fab fa-linkedin text-xl transition-colors duration-300 group-hover:text-[#0077b5] dark:group-hover:text-sky-300"></i>
+                                </div>
+                                <span class="char-anim effect-float-up transition-colors duration-300">LinkedIn</span>
+                            </a>
+                            <!-- Instagram -->
+                            <a href="#" class="flex items-center gap-3 group mb-2">
+                                <div class="w-6 flex justify-center">
+                                    <i class="fab fa-instagram text-xl transition-colors duration-300 group-hover:text-pink-600 dark:group-hover:text-pink-400"></i>
+                                </div>
+                                <span class="char-anim effect-float-up transition-colors duration-300">Instagram</span>
+                            </a>
+                            <!-- X / Twitter (Fix: Requires FontAwesome 6.4.2+) -->
+                            <a href="#" class="flex items-center gap-3 group mb-2">
+                                <div class="w-6 flex justify-center">
+                                    <i class="fa-brands fa-x-twitter text-xl transition-colors duration-300 text-black dark:text-white group-hover:opacity-80"></i>
+                                </div>
+                                <span class="char-anim effect-float-up transition-colors duration-300">X / Twitter</span>
+                            </a>
+                        </div>
+                    </div>  
+                    <div>
+                        <span class="col-header">Contact</span>
+                        <div class="link-list">
+                            <a href="mailto:swaroopr2345@gmail.com" class="group email-link transition-colors duration-300 hover:text-blue-600 dark:hover:text-yellow-400 whitespace-nowrap">
+                                <span class="char-anim effect-float-up">swaroopr2345@gmail.com</span>
+                            </a>
+                            <a href="contact.html" class="char-anim effect-float-up">Contact form</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-bar">
+            <div>&copy; 2025 SWAROOP RATHI</div>
+            <div id="live-clock">IND --:--:--</div>
+            <div style="font-style: italic;">WE COULD JUST EAT YOU UP ///////</div>
+        </div>
+        <a href="services.html" onclick="showHome()" class="massive-brand text-slate-900 dark:text-white">Swaroop</a>
+    </div>
+
+    <!-- 3. JAVASCRIPT LOGIC -->
+    <script>
+        // --- 0. FORCE SCROLL TO TOP ON REFRESH ---
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+
+        // --- NAVBAR & SCROLL LOGIC ---
+        const nav = document.getElementById('main-nav');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('open');
+            const paths = mobileMenuBtn.querySelectorAll('path');
+            paths.forEach(p => p.classList.toggle('hidden'));
+            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+        }
+        if(mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.remove('bg-transparent', 'text-black', 'dark:text-white');
+                // Added text-slate-900/white explicitly to ensure contrast on scroll
+                nav.classList.add('bg-white/30', 'backdrop-blur-md', 'shadow-sm', 'dark:bg-black/30', 'text-slate-900', 'dark:text-white');
+            } else {
+                nav.classList.add('bg-transparent', 'text-black', 'dark:text-white');
+                nav.classList.remove('bg-white/30', 'backdrop-blur-md', 'shadow-sm', 'dark:bg-black/30', 'text-slate-900');
+            }
+        });
+
+        // --- THEME & SCROLL LOGIC ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const scrollTopBtn = document.getElementById('scroll-top');
+        const html = document.documentElement;
+
+        themeToggleBtn.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('visible', window.scrollY > 300);
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // --- SERVICES DATA ---
+        const servicesData = [
+            {
+                id: 'web-dev',
+                title: 'Web Development',
+                icon: 'fa-code',
+                shortDesc: 'Custom websites built for speed and scale.',
+                longDesc: 'We build high-performance, scalable websites tailored to your business goals. From corporate sites to complex web applications, we use React, Vue, and Node.js.',
+                heroImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+                coreServices: [
+                    { title: 'Corporate Websites', desc: 'High-end, responsive platforms that professionally represent your brand identity.' },
+                    { title: 'E-Commerce Stores', desc: 'Robust online shops featuring secure payment gateways and high-conversion checkout.' },
+                    { title: 'SaaS Platforms', desc: 'Scalable cloud-based software solutions engineered for high availability.' },
+                    { title: 'CMS Development', desc: 'Custom content management systems using WordPress, Shopify, or Headless CMS.' },
+                    { title: 'Landing Pages', desc: 'Conversion-optimized single pages designed specifically for marketing campaigns.' },
+                    { title: 'Web Portals', desc: 'Secure, authenticated portals for customer management and B2B operations.' }
+                ],
+                approach: [
+                    { step: '01', title: 'Blueprint', desc: 'We map out the site architecture, data schemas, and user flows.' },
+                    { step: '02', title: 'Wireframe', desc: 'Creating the skeletal framework and interactive prototypes.' },
+                    { step: '03', title: 'Develop', desc: 'Writing clean, semantic, and secure code using modern frameworks.' },
+                    { step: '04', title: 'Deploy', desc: 'Rigorous testing, SEO optimization, and performance tuning.' }
+                ],
+                stories: [
+                    { 
+                        title: 'TechFlow Dashboard', result: '+200% Retention', desc: 'Redesigned a legacy SaaS platform dashboard.',
+                        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
+                        caseStudy: {
+                            client: 'TechFlow Inc.', role: 'Full Stack Development',
+                            challenge: 'The client faced significant churn due to a slow, confusing interface built on legacy code. Users struggled to navigate the complex data visualization tools.',
+                            solution: 'We re-architected the frontend using React and D3.js for high-performance data rendering. The new intuitive dashboard reduced load times by 60% and provided customizable widgets.',
+                            gallery: [
+                                'https://i.pinimg.com/736x/20/bb/06/20bb06b5f35725ac686c69f7eb6476ca.jpg',
+                                'https://i.pinimg.com/1200x/f0/70/9d/f0709d587d46c1ae2b92072d4ffeb657.jpg'
+                            ]
+                        }
+                    },
+                    { 
+                        title: 'Stereo Vinyls Fashion', result: '3x Conversions', desc: 'High-end Shopify Plus implementation.',
+                        image: 'https://i.pinimg.com/1200x/4e/f1/6f/4ef16fe0fea3f5d8f2eff1a6d289e31f.jpg',
+                        caseStudy: {
+                            client: 'Stereo Vinyls Mode', role: 'E-commerce Strategy',
+                            challenge: 'Despite high traffic, the brand suffered from a high cart abandonment rate due to a clunky checkout process and lack of mobile responsiveness.',
+                            solution: 'We implemented a headless Shopify Plus solution with a mobile-first design approach. Key features included one-click checkout, AR product try-ons, and AI-driven product recommendations.',
+                            gallery: [
+                                'https://i.pinimg.com/736x/c6/0c/0c/c60c0c960a41d79213ba0460726b90a5.jpg',
+                                'https://i.pinimg.com/1200x/61/40/bc/6140bc7dbd11f46dd21356efb7a87882.jpg'
+                            ]
+                        }
+                    },
+                    { 
+                        title: 'UniEdu Portal', result: '50k Users', desc: 'Secure student management system.',
+                        image: 'https://i.pinimg.com/736x/f3/ca/68/f3ca6822468fd9825fde8b8bf15295c8.jpg',
+                        caseStudy: {
+                            client: 'State University', role: 'Portal Development',
+                            challenge: 'The university relied on disjointed systems for grading, attendance, and assignments, causing data silos and frustration among 50,000+ students.',
+                            solution: 'We built a centralized, secure web portal integrating all academic functions. Features include single sign-on (SSO), real-time grade notifications, and a responsive design.',
+                            gallery: [
+                                'https://i.pinimg.com/1200x/b7/7e/69/b77e698e25c293b329d4415006eb2715.jpg',
+                                'https://i.pinimg.com/1200x/c8/89/f4/c889f49bac105bde189a2894fc402770.jpg'
+                            ]
+                        }
+                    }
+                ],
+                faqs: [
+                    { q: 'What technologies do you use?', a: 'We primarily use the MERN stack (MongoDB, Express, React, Node.js), Next.js, and PHP/WordPress.' },
+                    { q: 'How long does a website take?', a: 'A standard brochure site takes 2-4 weeks, while complex web applications can take 8-12 weeks.' },
+                    { q: 'Is the website mobile-friendly?', a: 'Absolutely. We practice mobile-first design, ensuring your site looks and functions perfectly on all devices.' },
+                    { q: 'Do you offer post-launch support?', a: 'Yes, we offer comprehensive maintenance packages that include security updates and performance monitoring.' }
+                ]
+            },
+            {
+                id: 'app-dev',
+                title: 'App Development',
+                icon: 'fa-mobile-alt',
+                shortDesc: 'Native and cross-platform mobile apps.',
+                longDesc: 'Transform your ideas into powerful mobile applications. We specialize in Swift, Kotlin, and Flutter.',
+                heroImage: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+                coreServices: [
+                    { title: 'iOS Native', desc: 'Premium, high-performance applications built with Swift specifically for the Apple ecosystem.' }, 
+                    { title: 'Android Native', desc: 'Robust and scalable applications built with Kotlin to reach the vast Android user base.' }, 
+                    { title: 'Flutter Apps', desc: 'Cost-effective cross-platform solutions that run smoothly on both iOS and Android.' }, 
+                    { title: 'React Native', desc: 'JavaScript-based mobile applications that offer a native-like feel.' }, 
+                    { title: 'App Maintenance', desc: 'Ongoing support including OS updates, bug fixes, and feature additions.' }, 
+                    { title: 'Mobile UI/UX', desc: 'Touch-first design systems focused on intuitive navigation.' }
+                ],
+                approach: [
+                    { step: '01', title: 'Strategy', desc: 'Defining core features, monetization models, and target audience analysis.' }, 
+                    { step: '02', title: 'Prototype', desc: 'Building interactive wireframes to validate user flow and experience.' }, 
+                    { step: '03', title: 'Build', desc: 'Agile development sprints with regular check-ins and iterative builds.' }, 
+                    { step: '04', title: 'Publish', desc: 'Managing the entire submission process to the Apple App Store and Google Play Store.' }
+                ],
+                stories: [
+                    { 
+                        title: 'FitLife Pro', result: '1M Downloads', desc: 'AI Fitness Coach app.', image: 'https://i.pinimg.com/736x/20/ef/10/20ef10ca82b73b3b6e97546e9d781079.jpg',
+                        caseStudy: { 
+                            client: 'FitLife', role: 'Mobile Development', 
+                            challenge: 'Users struggled to stay motivated with generic workout plans, leading to low retention after 30 days.', 
+                            solution: 'We developed an AI-driven coaching engine that adapts workouts based on user feedback. Coupled with gamification features like badges and leaderboards, retention increased by 40%.', 
+                            gallery: [
+                                'https://i.pinimg.com/736x/2e/3e/8b/2e3e8b7e31dbabb9dd4368c660c3975b.jpg', /* Fitness UI */
+                                'https://i.pinimg.com/1200x/d2/0c/68/d20c688f0f18ab0e613ae7b4776d776e.jpg', /* Tracking UI */
+                                'https://i.pinimg.com/736x/16/32/33/163233a1b65958c927bd50d517108807.jpg' /* Lifestyle */
+                            ] 
+                        }
+                    },
+                    {
+                        title: 'Urban Ride', result: '4.8 Stars', desc: 'City transport booking.', image: 'https://i.pinimg.com/1200x/06/f8/63/06f863cd18701fc8fa3e3a34e438f907.jpg',
+                        caseStudy: { 
+                            client: 'CityMove', role: 'App Architecture', 
+                            challenge: 'An existing ride-booking app suffered from GPS latency and crashed during peak hours.', 
+                            solution: 'We rewrote the backend using Go for concurrency and implemented WebSocket for real-time tracking. The new app handles 10x concurrent users with zero downtime.', 
+                            gallery: [
+                                'https://i.pinimg.com/1200x/cd/13/87/cd1387e1307a789918bd580cf5213f27.jpg', /* Map UI */
+                                'https://i.pinimg.com/736x/1f/7e/88/1f7e8801a7c888bec03f42d065389445.jpg', /* Mobile Hand */
+                                'https://i.pinimg.com/1200x/c7/d7/12/c7d712f7ceac72f7c697d8a665352eb1.jpg' /* Booking UI */
+                            ] 
+                        }
+                    },
+                    {
+                        title: 'Quick Bites', result: 'Top 10 App', desc: 'Food discovery platform.', image: 'https://i.pinimg.com/1200x/b8/26/ac/b826accb35398e717844ab93511bf89b.jpg',
+                        caseStudy: { 
+                            client: 'YumInc', role: 'Full Stack', 
+                            challenge: 'Users found it hard to discover authentic local food spots amidst chain restaurant clutter.', 
+                            solution: 'We created a social-first discovery app where users can follow local foodies. The app features geolocation-based "hidden gems" alerts.', 
+                            gallery: [
+                                'https://i.pinimg.com/736x/12/67/24/126724398adf3774dc53f1c5f3eb0edc.jpg', /* Food App UI */
+                                'https://i.pinimg.com/736x/81/dd/7c/81dd7caabe0cbaa3288452ad2f54c0b1.jpg', /* Food */
+                                'https://i.pinimg.com/1200x/93/2c/9a/932c9a0d546c3563b04749f52487082d.jpg' /* Search UI */
+                            ] 
+                        }
+                    }
+                ],
+                faqs: [
+                    { q: 'Native vs Hybrid?', a: 'Native offers the best performance for games. Hybrid (Flutter) is faster to build for business apps.' }, 
+                    { q: 'Who owns the code?', a: 'You do. We transfer all IP and source code rights to you upon completion.' },
+                    { q: 'Do you help with App Store submission?', a: 'Yes, we handle the entire submission and compliance process for both Apple and Google.' },
+                    { q: 'Can you update my existing app?', a: 'Yes, we can refactor and update existing codebases after an audit.' }
+                ]
+            },
+            {
+                id: 'seo',
+                title: 'SEO Optimization',
+                icon: 'fa-chart-line',
+                shortDesc: 'Boost rankings and organic traffic.',
+                longDesc: 'Data-driven SEO strategies focusing on long-term growth and technical health.',
+                heroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+                coreServices: [
+                    { title: 'Keyword Research', desc: 'Identifying high-value search terms that drive targeted traffic.' }, 
+                    { title: 'On-Page SEO', desc: 'Optimizing meta tags, headers, and content structure.' }, 
+                    { title: 'Technical SEO', desc: 'Fixing backend issues like site speed and crawl errors.' }, 
+                    { title: 'Link Building', desc: 'Acquiring high-authority backlinks to boost domain authority.' }, 
+                    { title: 'Local SEO', desc: 'Optimizing Google My Business to dominate local map packs.' }, 
+                    { title: 'Content Strategy', desc: 'Creating valuable content that establishes topical authority.' }
+                ],
+                approach: [
+                    { step: '01', title: 'Audit', desc: 'Comprehensive analysis of site health and competitors.' }, 
+                    { step: '02', title: 'Plan', desc: 'Developing a customized keyword and content strategy.' }, 
+                    { step: '03', title: 'Optimize', desc: 'Implementing technical fixes and content campaigns.' }, 
+                    { step: '04', title: 'Monitor', desc: 'Continuous tracking of rankings and traffic with reporting.' }
+                ],
+                stories: [
+                    { title: 'Law Firm NYC', result: '#1 Ranking', desc: 'Top spot for legal keywords.', image: 'https://i.pinimg.com/736x/2b/03/cf/2b03cfa41c371fad8aa58bfcfa7193b8.jpg', caseStudy: { client: 'NYC Law', role: 'SEO Strategy', challenge: 'The firm was invisible in search results for "NYC Injury Lawyer", losing clients to competitors.', solution: 'We implemented an aggressive local SEO campaign, optimized Google My Business, and created 50+ hyper-local landing pages.', gallery: ['https://i.pinimg.com/736x/aa/19/39/aa19395ea57eee4c5a8a26b950c513a8.jpg'] } },
+                    { title: 'Gadget Shop', result: '+150% Sales', desc: 'Organic traffic growth.', image: 'https://i.pinimg.com/736x/0e/fe/91/0efe91b36a2136acef3eca9325de5f9c.jpg', caseStudy: { client: 'GadgetCo', role: 'E-commerce SEO', challenge: 'Product pages were not indexing correctly, and duplicate content issues were penalizing the site.', solution: 'We fixed canonical tag errors, optimized product descriptions with semantic keywords, and improved site speed.', gallery: ['https://i.pinimg.com/1200x/65/be/d9/65bed9856722ccfa4d362e8c6f46987b.jpg'] } },
+                    { title: 'Smile Dental', result: 'More Calls', desc: 'Local map pack win.', image: 'https://i.pinimg.com/1200x/aa/75/6b/aa756b1e34f8582d4867c3cf89c8aac8.jpg', caseStudy: { client: 'SmileDoc', role: 'Local SEO', challenge: 'New clinic location had zero online presence.', solution: 'Complete citation building, review management strategy, and location-specific service pages.', gallery: ['https://i.pinimg.com/736x/b8/2a/71/b82a713c02b949d0bff9a45927136d75.jpg'] } }
+                ],
+                faqs: [
+                    { q: 'How long does it take?', a: 'Typically 3-6 months for significant movement.' },
+                    { q: 'Can you guarantee #1 ranking?', a: 'No ethical agency can guarantee #1, but we guarantee best practices and growth.' },
+                    { q: 'Do I need monthly services?', a: 'Yes, SEO requires ongoing maintenance to stay ahead of competitors.' },
+                    { q: 'Do you provide reports?', a: 'Yes, detailed monthly reports on traffic and rankings.' }
+                ]
+            },
+            {
+                id: 'graphic-design',
+                title: 'Graphic Design',
+                icon: 'fa-paint-brush',
+                shortDesc: 'Visual storytelling for brands.',
+                longDesc: 'Compelling visuals that resonate with your audience across all media.',
+                heroImage: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+                coreServices: [
+                    { title: 'Logos', desc: 'Memorable brand marks that define your identity.' }, 
+                    { title: 'Branding', desc: 'Complete visual identity systems including color palettes.' }, 
+                    { title: 'Social Kits', desc: 'Custom templates for consistent brand messaging.' }, 
+                    { title: 'Packaging', desc: 'Eye-catching product packaging designs.' }, 
+                    { title: 'Print', desc: 'High-quality designs for brochures and banners.' }, 
+                    { title: 'Decks', desc: 'Professional pitch decks that captivate investors.' }
+                ],
+                approach: [
+                    { step: '01', title: 'Listen', desc: 'Deep dive into brand values and aesthetics.' }, 
+                    { step: '02', title: 'Sketch', desc: 'Brainstorming and sketching rough concepts.' }, 
+                    { step: '03', title: 'Refine', desc: 'Digitizing and refining details and typography.' }, 
+                    { step: '04', title: 'Deliver', desc: 'Finalizing and exporting all necessary file formats.' }
+                ],
+                stories: [
+                    { title: 'Bean Coffee', result: 'Rebrand', desc: 'Modernized coffee brand.', image: 'https://i.pinimg.com/736x/39/3b/b1/393bb1bb15940aea508dd07c5da23917.jpg', caseStudy: { client: 'BeanCo', role: 'Branding Identity', challenge: 'The brand looked outdated and failed to appeal to the younger demographic of specialty coffee drinkers.', solution: 'We created a vibrant, minimalist visual identity with a new logo, eco-friendly packaging design, and a playful color palette.', gallery: ['https://i.pinimg.com/736x/ad/7a/fb/ad7afbf43cdd782e42065a21832d25d2.jpg','https://i.pinimg.com/736x/db/f8/64/dbf864f3ec8cc9017d532b2035b0f049.jpg'] } },
+                    { title: 'Alpha Start', result: '$2M Raise', desc: 'Investor deck design.', image: 'https://i.pinimg.com/1200x/6c/96/71/6c96714220b29fe8c60c9792e0187b00.jpg', caseStudy: { client: 'Alpha', role: 'Presentation Design', challenge: 'Complex technical data needed to be presented simply to potential investors.', solution: 'We designed a clean, infographic-heavy pitch deck that simplified the value proposition. The startup successfully secured Series A funding.', gallery: ['https://i.pinimg.com/736x/c9/1d/08/c91d087215036701cf646a402978cae5.jpg','https://i.pinimg.com/736x/54/4a/ac/544aac17d6bf81edfb56f0f47fd62569.jpg'] } },
+                    { title: 'Tech Summit', result: 'Impact', desc: 'Event graphics.', image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80', caseStudy: { client: 'Summit', role: 'Event Branding', challenge: 'Needed a cohesive look for a massive conference venue.', solution: 'Designed large-format banners, wayfinding systems, and digital stage backdrops.', gallery: ['https://i.pinimg.com/1200x/f3/6b/47/f36b4743affcafc797385d2c161b57dd.jpg','https://i.pinimg.com/1200x/ab/df/27/abdf27db6fe40e8851f716c1f2708fc9.jpg'] } }
+                ],
+                faqs: [
+                    { q: 'What file formats do I get?', a: 'AI, PSD, PDF, PNG, JPG, and SVG.' },
+                    { q: 'How many revisions are included?', a: 'Up to 3 rounds of revisions.' },
+                    { q: 'Do you handle printing?', a: 'We prepare print-ready files but recommend trusted printers.' },
+                    { q: 'Who owns the copyright?', a: 'Full ownership is transferred to you upon payment.' }
+                ]
+            },
+            {
+                id: 'ui-ux',
+                title: 'UI/UX Design',
+                icon: 'fa-layer-group',
+                shortDesc: 'Intuitive interfaces for users.',
+                longDesc: 'Designing interfaces that are functional, accessible, and beautiful.',
+                heroImage: 'https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+                coreServices: [
+                    { title: 'Research', desc: 'In-depth user interviews and personas.' }, 
+                    { title: 'Wireframes', desc: 'Low-fidelity structural layouts.' }, 
+                    { title: 'Prototyping', desc: 'Interactive, clickable prototypes for testing.' }, 
+                    { title: 'Visual UI', desc: 'High-fidelity interface design with pixel-perfect details.' }, 
+                    { title: 'Systems', desc: 'Creating comprehensive design systems.' }, 
+                    { title: 'Testing', desc: 'Usability testing to validate design decisions.' }
+                ],
+                approach: [
+                    { step: '01', title: 'Empathize', desc: 'Researching users and their context.' }, 
+                    { step: '02', title: 'Define', desc: 'Mapping out the ideal user journey.' }, 
+                    { step: '03', title: 'Ideate', desc: 'Brainstorming solutions and wireframing.' }, 
+                    { step: '04', title: 'Test', desc: 'Validating prototypes with real users.' }
+                ],
+                stories: [
+                    { title: 'NeoBank', result: 'Ease', desc: 'Simplified banking UI.', image: 'https://i.pinimg.com/1200x/f5/c3/f7/f5c3f7ae1c945e456493ee1c2fd3df08.jpg', caseStudy: { client: 'Neo', role: 'Product Design', challenge: 'Users found the previous app confusing for simple money transfers.', solution: 'We simplified the navigation and used clear visual cues for actions.', gallery: ['https://i.pinimg.com/1200x/d4/bd/91/d4bd91ab911e02ad4fce8751687edbfc.jpg','https://i.pinimg.com/1200x/58/76/8b/58768b12ad54b391ddcd35c201d88bdd.jpg'] } },
+                    { title: 'Voyage', result: '-40% Drop', desc: 'Booking flow fix.', image: 'https://i.pinimg.com/1200x/31/39/4f/31394f84950c8dfd8275c5a160de2f4a.jpg', caseStudy: { client: 'Voyage', role: 'UX Research', challenge: 'High drop-off rate at the payment step of booking.', solution: 'Redesigned the checkout flow to be linear and transparent about costs.', gallery: ['https://i.pinimg.com/1200x/5f/b8/f4/5fb8f46ea142ad2d02e8e3cc0455e6ae.jpg','https://i.pinimg.com/1200x/1e/b7/d9/1eb7d9ea3022d951b77d2a80654130b9.jpg'] } },
+                    { title: 'DataCorp', result: 'Clarity', desc: 'Enterprise dashboard.', image: 'https://i.pinimg.com/1200x/45/2a/97/452a97c2e355344757aee72d44a00166.jpg', caseStudy: { client: 'DataCorp', role: 'UI Design', challenge: 'Complex data was hard to interpret for non-technical managers.', solution: 'Created a clean, modular dashboard system with clear data visualization guidelines.', gallery: ['https://i.pinimg.com/736x/55/88/a6/5588a61e9e46b7773a7bc442ff695dfa.jpg','https://i.pinimg.com/1200x/b2/c9/b4/b2c9b4a23e9eb72c1d6c7877b64ecd43.jpg'] } }
+                ],
+                faqs: [
+                    { q: 'What tools do you use?', a: 'Figma, Adobe XD, and Sketch.' },
+                    { q: 'Do you do coding?', a: 'We focus on design but work closely with devs.' },
+                    { q: 'What is a design system?', a: 'A collection of reusable components for consistency.' },
+                    { q: 'Can you redesign an existing app?', a: 'Yes, we specialize in UI audits and redesigns.' }
+                ]
+            },
+            {
+                id: 'editing',
+                title: 'Video Editing',
+                icon: 'fa-film',
+                shortDesc: 'Professional post-production.',
+                longDesc: 'Cutting, grading, and sound design for social and cinematic content.',
+                heroImage: 'https://i.pinimg.com/1200x/49/c8/55/49c855437304f1f61ba12f5273e1a566.jpg',
+                coreServices: [
+                    { title: 'Commercials', desc: 'High-impact editing for ads.' }, 
+                    { title: 'YouTube', desc: 'Engaging editing optimized for retention.' }, 
+                    { title: 'Color', desc: 'Professional color correction and grading.' }, 
+                    { title: 'Motion', desc: 'Animated text and visual effects.' }, 
+                    { title: 'Sound', desc: 'Audio mixing and sound design.' }, 
+                    { title: 'Reels', desc: 'Vertical video editing for social.' }
+                ],
+                approach: [
+                    { step: '01', title: 'Ingest', desc: 'Organizing footage and syncing audio.' }, 
+                    { step: '02', title: 'Cut', desc: 'Creating the narrative flow.' }, 
+                    { step: '03', title: 'Polish', desc: 'Adding effects and color.' }, 
+                    { step: '04', title: 'Export', desc: 'Final rendering for platforms.' }
+                ],
+                stories: [
+                    { title: 'Travel Vlog', result: '100k Subs', desc: 'Visual style.', image: 'https://i.pinimg.com/736x/d7/6a/e3/d76ae307875f9ea721bd0a336233c679.jpg', caseStudy: { client: 'Vlogger', role: 'Editor', challenge: 'Raw footage was shaky and lacked a cohesive story.', solution: 'Used stabilization, dynamic cuts, and sound design to create an immersive travel diary.', gallery: ['https://i.pinimg.com/736x/ae/37/8c/ae378c74de7412f7c9d56289b041e502.jpg','https://i.pinimg.com/1200x/44/89/3a/44893a4cb6575938b3b2ea75b18c4b23.jpg'] } },
+                    { title: 'Promo Ad', result: 'High ROI', desc: 'Product commercial.', image: 'https://i.pinimg.com/1200x/f2/35/28/f2352853271460eb6b0c2005ac63036e.jpg', caseStudy: { client: 'Brand', role: 'Editor', challenge: 'Product demo was boring and too long.', solution: 'Created a fast-paced 30s cut with motion graphics highlighting key features.', gallery: ['https://i.pinimg.com/1200x/d8/6e/2a/d86e2a11abc0c67a32786700ca1dc8a2.jpg','https://i.pinimg.com/1200x/2c/81/df/2c81df0f3e0119038bb3d1f2d00bf266.jpg'] } },
+                    { title: 'Docu-Short', result: 'Award', desc: 'Film festival win.', image: 'https://i.pinimg.com/736x/f9/09/d0/f909d03defe3d1aaea705de516693d0f.jpg', caseStudy: { client: 'Director', role: 'Editor', challenge: 'Pacing felt off in the emotional scenes.', solution: 'Refined the edit to let moments breathe, enhancing the emotional impact.', gallery: ['https://i.pinimg.com/1200x/99/77/49/997749a6fb9e87e476de3a8776728bae.jpg','https://i.pinimg.com/1200x/a5/a6/69/a5a66912426e2ebe3b640ce7e45eb645.jpg'] } }
+                ],
+                faqs: [
+                    { q: 'What is your turnaround time?', a: '24-48 hours for simple edits.' },
+                    { q: 'How do I send large files?', a: 'Google Drive or Dropbox.' },
+                    { q: 'Do you provide music?', a: 'Yes, royalty-free libraries.' },
+                    { q: 'Can you edit 4K footage?', a: 'Yes, fully equipped for 4K.' }
+                ]
+            }
+        ];
+
+        // --- RENDER LOGIC ---
+        const homeView = document.getElementById('home-view');
+        const detailView = document.getElementById('detail-view');
+        const cardsContainer = document.getElementById('cards-container');
+        
+        // Modal
+        const modal = document.getElementById('case-study-modal');
+        const modalBackdrop = document.getElementById('modal-backdrop');
+        const modalPanel = document.getElementById('modal-panel');
+        const modalContentInject = document.getElementById('modal-content-inject');
+
+        function renderServices() {
+            cardsContainer.innerHTML = '';
+            servicesData.forEach((service, index) => {
+                const card = document.createElement('div');
+                card.className = 'bg-white dark:bg-slate-900 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 cursor-pointer flex flex-col relative overflow-hidden group animate-fade-in-up transition-colors duration-300';
+                card.style.animationDelay = `${index * 100}ms`;
+                card.onclick = () => openService(service.id);
+                // NOTE: Using 'fas' generic wrapper. 
+                card.innerHTML = `
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="${service.heroImage}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="${service.title}" />
+                        <div class="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors"></div>
+                    </div>
+                    <div class="p-8 relative z-10 flex flex-col flex-grow">
+                        <div class="w-16 h-16 -mt-16 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-lg rounded-2xl flex items-center justify-center text-indigo-600 dark:text-indigo-400 text-2xl mb-6 relative z-10 group-hover:bg-indigo-600 group-hover:text-white dark:group-hover:bg-yellow-400 dark:group-hover:text-black transition-colors duration-300"><i class="fas ${service.icon}"></i></div>
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-indigo-600 dark:group-hover:text-yellow-400 transition-colors transform group-hover:translate-x-1 duration-300">${service.title}</h3>
+                        <p class="text-slate-500 dark:text-slate-400 mb-8 leading-relaxed text-sm line-clamp-2">${service.shortDesc}</p>
+                        <span class="mt-auto text-indigo-600 dark:text-indigo-400 font-bold text-sm flex items-center group/btn relative z-10 transform group-hover:translate-x-1 transition-transform duration-300 group-hover:text-indigo-600 dark:group-hover:text-yellow-400">Explore <i class="fas fa-arrow-right ml-2 transform group-hover/btn:translate-x-1 transition-transform"></i></span>
+                    </div>`;
+                cardsContainer.appendChild(card);
+            });
+        }
+
+        function openService(id) {
+            const service = servicesData.find(s => s.id === id);
+            if (!service) return;
+            document.getElementById('detail-title').innerText = service.title;
+            document.getElementById('detail-description').innerText = service.longDesc;
+            document.getElementById('detail-hero-img').src = service.heroImage;
+            document.getElementById('core-services-topic').innerText = service.title;
+            
+            document.getElementById('core-services-grid').innerHTML = service.coreServices.map((item, i) => `
+                <div class="interactive-item rounded-2xl p-8 animate-fade-in-up group" style="animation-delay: ${i * 50}ms">
+                    <div class="icon-wrap w-12 h-12 flex items-center justify-center text-lg mb-6 group-hover:bg-indigo-600 group-hover:text-white dark:group-hover:bg-yellow-400 dark:group-hover:text-black transition-colors"><i class="fas fa-check"></i></div>
+                    <h4 class="font-bold text-xl text-slate-900 dark:text-white mb-3 relative z-10 group-hover:text-indigo-600 dark:group-hover:text-yellow-400 transition-colors">${item.title}</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed relative z-10">${item.desc}</p>
+                </div>`).join('');
+
+            document.getElementById('approach-grid').innerHTML = service.approach.map((item, index) => `
+                <div class="interactive-item p-6 rounded-2xl text-center relative animate-fade-in-up group" style="animation-delay: ${index * 100}ms">
+                    <div class="w-14 h-14 mx-auto bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg border-4 border-slate-100 dark:border-slate-700 mb-6 transition-all duration-300 relative z-10 group-hover:scale-110 group-hover:border-indigo-500 group-hover:text-indigo-600 dark:group-hover:border-yellow-400 dark:group-hover:bg-yellow-400 dark:group-hover:text-black">${item.step}</div>
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-yellow-400 transition-colors">${item.title}</h4>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">${item.desc}</p>
+                </div>`).join('');
+
+            document.getElementById('stories-grid').innerHTML = service.stories.map((story, index) => `
+                <div class="group relative rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-indigo-500/30 transition-all duration-500 flex flex-col h-full animate-fade-in-up bg-white/50 dark:bg-slate-900/30 backdrop-blur-sm hover:bg-white dark:hover:bg-slate-900 hover:shadow-2xl" style="animation-delay: ${index * 150}ms">
+                    <div class="relative h-64 overflow-hidden cursor-pointer" onclick="openCaseStudy('${service.id}', ${index})">
+                        <img src="${story.image}" alt="${story.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                             <h4 class="font-bold text-xl mb-1">${story.title}</h4>
+                             <span class="inline-block bg-indigo-600 text-xs font-bold px-2 py-0.5 rounded text-white shadow-md dark:group-hover:bg-yellow-400 dark:group-hover:text-black transition-colors">${story.result}</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 line-clamp-3 leading-relaxed">${story.desc}</p>
+                        <div class="mt-auto pt-4 border-t border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                            <button onclick="openCaseStudy('${service.id}', ${index})" class="text-indigo-600 dark:text-indigo-400 text-xs font-bold uppercase tracking-wider hover:text-indigo-800 dark:hover:text-indigo-300 transition flex items-center group/btn dark:group-hover:text-yellow-400">View Case Study <i class="fas fa-long-arrow-alt-right ml-2 transform group-hover/btn:translate-x-1 transition-transform"></i></button>
+                        </div>
+                    </div>
+                </div>`).join('');
+
+            document.getElementById('faq-container').innerHTML = service.faqs.map((faq, index) => `
+                <div class="faq-row overflow-hidden">
+                    <button onclick="toggleFaq(${index})" class="w-full px-8 py-6 text-left flex justify-between items-center focus:outline-none group" id="faq-btn-${index}">
+                        <span class="font-semibold text-slate-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-yellow-400 transition-colors text-lg">${faq.q}</span>
+                        <div class="w-10 h-10 rounded-full border border-slate-200 dark:border-slate-700 flex items-center justify-center faq-icon-circle text-slate-400 dark:text-slate-500 group-hover:text-indigo-600 dark:group-hover:text-yellow-400 dark:group-hover:border-yellow-400 transition-all"><i class="fas fa-chevron-down text-sm faq-icon"></i></div>
+                    </button>
+                    <div id="faq-content-${index}" class="faq-content bg-slate-50/50 dark:bg-slate-900/30">
+                        <p class="px-8 pb-8 pt-2 text-slate-600 dark:text-slate-400 text-base leading-relaxed">${faq.a}</p>
+                    </div>
+                </div>`).join('');
+
+            homeView.classList.add('hidden-view');
+            detailView.classList.remove('hidden-view');
+            window.scrollTo(0, 0);
+        }
+
+        function openCaseStudy(serviceId, storyIndex) {
+            const service = servicesData.find(s => s.id === serviceId);
+            if (!service) return;
+            const story = service.stories[storyIndex];
+            const cs = story.caseStudy;
+            
+            // Generate Gallery based on type
+            let galleryHTML = '';
+            if (cs.gallery && cs.gallery.length > 0) {
+                 if (service.id === 'app-dev' || service.id === 'ui-ux') {
+                    galleryHTML = `<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-items-center mt-12">${cs.gallery.map(img => `<div class="mockup-phone group"><img src="${img}" class="w-full h-full object-cover"></div>`).join('')}</div>`;
+                 } else {
+                    galleryHTML = `<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">${cs.gallery.map(img => `<div class="rounded-xl overflow-hidden shadow-md h-64 group border border-slate-200 dark:border-slate-700"><img src="${img}" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700"></div>`).join('')}</div>`;
+                 }
+            }
+
+            modalContentInject.innerHTML = `
+                <div class="relative h-72 md:h-96 w-full overflow-hidden">
+                    <img src="${story.image}" class="w-full h-full object-cover animate-scale-in" alt="${story.title}">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/95 via-slate-900/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-8 md:p-12 text-white">
+                        <span class="bg-indigo-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-4 inline-block shadow-lg border border-indigo-400/30">Case Study</span>
+                        <h2 class="heading-font text-3xl md:text-5xl font-bold mb-2">${story.title}</h2>
+                    </div>
+                </div>
+                <div class="p-8 md:p-12 bg-white dark:bg-slate-900">
+                    <div class="flex flex-wrap gap-8 mb-12 border-b border-slate-100 dark:border-slate-800 pb-8">
+                        <div><span class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase block mb-1">Client</span><span class="font-semibold text-slate-900 dark:text-white">${cs.client}</span></div>
+                        <div><span class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase block mb-1">Result</span><span class="font-bold text-green-600 dark:text-green-400">${story.result}</span></div>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+                        <div><h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center"><i class="fas fa-mountain text-indigo-500 mr-3"></i>The Challenge</h3><p class="text-slate-600 dark:text-slate-300 leading-relaxed">${cs.challenge}</p></div>
+                        <div><h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center"><i class="fas fa-lightbulb text-indigo-500 mr-3"></i>The Solution</h3><p class="text-slate-600 dark:text-slate-300 leading-relaxed">${cs.solution}</p></div>
+                    </div>
+                    ${galleryHTML}
+                    <div class="mt-16 text-center pt-8 border-t border-slate-100 dark:border-slate-800"><button onclick="closeCaseStudy()" class="text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 text-sm font-semibold transition flex items-center justify-center mx-auto"><i class="fas fa-times mr-2"></i> Close Window</button></div>
+                </div>`;
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; 
+            setTimeout(() => { modalBackdrop.classList.add('open'); modalPanel.classList.add('open'); }, 10);
+        }
+
+        function closeCaseStudy() {
+            modalBackdrop.classList.remove('open');
+            modalPanel.classList.remove('open');
+            setTimeout(() => { modal.classList.add('hidden'); document.body.style.overflow = ''; }, 300);
+        }
+
+        function toggleFaq(index) {
+            const allContents = document.querySelectorAll('.faq-content');
+            const allButtons = document.querySelectorAll('[id^="faq-btn-"]');
+            const targetContent = document.getElementById(`faq-content-${index}`);
+            const targetBtn = document.getElementById(`faq-btn-${index}`);
+            const isOpen = targetContent.style.maxHeight;
+            allContents.forEach(el => { el.style.maxHeight = null; el.classList.remove('active'); });
+            allButtons.forEach(btn => btn.classList.remove('faq-active'));
+            if (!isOpen) {
+                targetBtn.classList.add('faq-active');
+                targetContent.classList.add('active');
+                targetContent.style.maxHeight = targetContent.scrollHeight + "px";
+            }
+        }
+
+        function showHome() {
+            detailView.classList.add('hidden-view');
+            homeView.classList.remove('hidden-view');
+            window.scrollTo(0, 0);
+        }
+
+        renderServices();
+
+        // --- FOOTER 3D ANIMATION LOGIC (Integrated) ---
+        function initFooter3D() {
+            const footerContainer = document.getElementById('footer-canvas-container'); 
+            if(!footerContainer) return;
+            
+            const fScene = new THREE.Scene(); 
+            const fCamera = new THREE.PerspectiveCamera(45, footerContainer.clientWidth / footerContainer.clientHeight, 0.1, 1000); 
+            fCamera.position.set(0, 0, 14);
+            
+            const fRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); 
+            fRenderer.setSize(footerContainer.clientWidth, footerContainer.clientHeight); 
+            fRenderer.setPixelRatio(window.devicePixelRatio); 
+            footerContainer.appendChild(fRenderer.domElement);
+            
+            // Adjusted Colors to match Nova Theme (Indigo/Purple)
+            const matBlue = new THREE.MeshBasicMaterial({ color: 0x0700c5, transparent: true, opacity: 0.8, blending: THREE.NormalBlending });
+            const matPink = new THREE.MeshBasicMaterial({ color: 0xFF24d0, transparent: true, opacity: 0.8, blending: THREE.NormalBlending });
+            
+            const fieldGroup = new THREE.Group(); 
+            fScene.add(fieldGroup);
+            
+            for(let i=0; i<30; i++){ 
+                const height = 1.5 + Math.random() * 4; 
+                const geo = new THREE.BoxGeometry(0.08, height, 0.08); 
+                const m = new THREE.Mesh(geo, Math.random() > 0.5 ? matBlue : matPink); 
+                m.position.set((Math.random() - 0.5) * 8, (Math.random() - 0.5) * 8, (Math.random() - 0.5) * 6); 
+                m.userData = { phase: Math.random() * Math.PI * 2 }; 
+                fieldGroup.add(m); 
+            }
+            
+            fieldGroup.rotation.z = -0.4; fieldGroup.rotation.y = 0.2; fieldGroup.rotation.x = 0.1; 
+            
+            let fMouseX = 0; let fMouseY = 0;
+            footerContainer.addEventListener('mousemove', (e) => { 
+                const rect = footerContainer.getBoundingClientRect(); 
+                fMouseX = (e.clientX - rect.left - rect.width/2) * 0.002; 
+                fMouseY = (e.clientY - rect.top - rect.height/2) * 0.002; 
+            });
+            footerContainer.addEventListener('mouseleave', () => { fMouseX = 0; fMouseY = 0; });
+            
+            function animateFooter() { 
+                requestAnimationFrame(animateFooter); 
+                const time = Date.now() * 0.001; 
+                fieldGroup.children.forEach(bar => { bar.position.y += Math.sin(time + bar.userData.phase) * 0.005; }); 
+                fieldGroup.rotation.x += (fMouseY - (fieldGroup.rotation.x - 0.1)) * 0.05; 
+                fieldGroup.rotation.y += (fMouseX - (fieldGroup.rotation.y - 0.2)) * 0.05; 
+                fRenderer.render(fScene, fCamera); 
+            } 
+            animateFooter();
+            
+            window.addEventListener('resize', () => { 
+                fCamera.aspect = footerContainer.clientWidth / footerContainer.clientHeight; 
+                fCamera.updateProjectionMatrix(); 
+                fRenderer.setSize(footerContainer.clientWidth, footerContainer.clientHeight); 
+            });
+        }
+        initFooter3D();
+
+        // Footer Word Rotator
+        const words = ["experiential", "branding", "digital", "power", "future"];
+        let currentIndex = 0;
+        const wordSpan = document.getElementById("word-rotator");
+
+        function splitTextRotator(target) {
+            if(!target) return;
+            const text = target.innerText;
+            target.innerHTML = '';
+            text.split('').forEach((char, i) => {
+                const span = document.createElement('span');
+                span.className = 'char'; 
+                span.innerText = char === ' ' ? '\u00A0' : char;
+                span.style.setProperty('--i', i);
+                target.appendChild(span);
+            });
+        }
+        function rotateWords() {
+            if(!wordSpan) return;
+            currentIndex = (currentIndex + 1) % words.length;
+            wordSpan.innerText = words[currentIndex];
+            splitTextRotator(wordSpan);
+        }
+        if(wordSpan) { splitTextRotator(wordSpan); setInterval(rotateWords, 3000); }
+
+        // Link Animation
+        function initLinkAnimation() {
+            document.querySelectorAll('.char-anim').forEach(element => {
+                const text = element.innerText;
+                element.innerHTML = text.split('').map((char, index) => {
+                    const className = char === ' ' ? 'space' : '';
+                    return `<span class="${className}" style="--i: ${index}">${char}</span>`;
+                }).join('');
+            });
+        }
+        initLinkAnimation();
+
+        // Clock
+        function updateClock() {
+            const clockElement = document.getElementById('live-clock');
+            if(!clockElement) return;
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            clockElement.innerText = `IND ${timeString}`;
+        }
+        updateClock(); setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
